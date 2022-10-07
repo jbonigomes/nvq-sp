@@ -1,0 +1,6 @@
+{
+  "appId": "com.nvqsp.app",
+  "appName": "NVQ SP",
+  "webDir": "dist",
+  "bundledWebRuntime": false
+}
