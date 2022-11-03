@@ -32,6 +32,16 @@ export const calculateModulesProgress = ({ modules }) => {
   }
 }
 
+export const calculateEvidencesProgress = ({ evidences }) => {
+  const { answered, length } = aggregateEvidences(evidences)
+
+  return {
+    numerator: answered,
+    denominator: length,
+    progress: answered * 100 / (length || 1),
+  }
+}
+
 export const calculateTotalProgress = ({ modules, evidences }) => {
   const modulesAgg = aggregateModules(modules)
   const evidencesAgg = aggregateEvidences(evidences)

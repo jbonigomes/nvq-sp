@@ -1,12 +1,14 @@
 import React from 'react'
 
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 import H1 from '/src/components/H1'
+import Drawer from '/src/components/Drawer'
 import Section from '/src/components/Section'
 import Progress from '/src/components/Progress'
 import Container from '/src/components/Container'
 import Navigation from '/src/components/Navigation'
+import DrawerItem from '/src/components/DrawerItem'
 
 import { getData } from '/src/store/data'
 import { getProfile } from '/src/store/profile'
@@ -36,7 +38,7 @@ export default () => {
 
   return (
     <Container>
-      <Section>
+      <Section className="fixed top-0 left-0 right-0">
         <Progress
           progress={progress?.progress ?? 0}
           numerator={progress?.numerator ?? 0}
@@ -44,15 +46,21 @@ export default () => {
         />
         <H1 className="text-center mt-3">Modules</H1>
       </Section>
-      <Section>
-      </Section>
-      <ul>
+      <Drawer>
         {modules.map((module) => (
-          <li key={module}>
-            <Link to={`/modules/${module}`}>{module}</Link>
-          </li>
+          <DrawerItem key={module} label={module} path="modules" />
         ))}
-      </ul>
+        {/* TODO: Remove test data below */}
+        <DrawerItem label="QICM002" path="modules" />
+        <DrawerItem label="QICM003" path="modules" />
+        <DrawerItem label="QICM004" path="modules" />
+        <DrawerItem label="QICM005" path="modules" />
+        <DrawerItem label="QICM006" path="modules" />
+        <DrawerItem label="QICM007" path="modules" />
+        <DrawerItem label="QICM008" path="modules" />
+        <DrawerItem label="QICM009" path="modules" />
+        <DrawerItem label="QICM010" path="modules" />
+      </Drawer>
       <Navigation active="modules" />
     </Container>
   )

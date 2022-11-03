@@ -1,7 +1,7 @@
 import React from 'react'
 
-export default ({ children }) => (
-  <section className="my-9">
+export default ({ children, className }) => (
+  <section className={`my-9 ${className}`}>
     {children}
   </section>
 )
