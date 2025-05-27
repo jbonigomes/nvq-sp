@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router'
 
 export default ({ path, label }) => (
   <li className="border-y border-dark-blue px-4 py-5">

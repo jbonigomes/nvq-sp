@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router'
 
 import H1 from '/src/components/H1'
 import Drawer from '/src/components/Drawer'

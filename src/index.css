@@ -1,3 +1,13 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --color-red: #EE5555;
+  --color-lime: #77DD77;
+  --color-blue: #222255;
+  --color-black: #000000;
+  --color-mid-blue: #18183C;
+  --color-dark-blue: #11132C;
+  --color-light-blue: #2F2F50;
+  --color-white: rgba(255, 255, 255, 0.9);
+  --color-light-grey: rgba(255, 255 ,255, 0.6);
+}
