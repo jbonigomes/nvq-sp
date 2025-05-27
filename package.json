@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
-    "start": "vite"
+    "start": "vite",
+    "deploy": "vite build && gh-pages -d dist"
   },
   "devDependencies": {
     "@capacitor/cli": "7.2.0",
@@ -13,6 +14,7 @@
     "@capacitor/preferences": "7.0.1",
     "@tailwindcss/vite": "4.1.7",
     "@vitejs/plugin-react": "4.5.0",
+    "gh-pages": "6.3.0",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-router": "7.6.1",
