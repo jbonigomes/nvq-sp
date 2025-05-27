@@ -6,7 +6,7 @@
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "start": "vite",
-    "deploy": "vite build && gh-pages -d dist"
+    "deploy": "vite build --base=/nvq-sp && gh-pages -d dist"
   },
   "devDependencies": {
     "@capacitor/cli": "7.2.0",
