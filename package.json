@@ -6,7 +6,7 @@
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "start": "vite",
-    "lint": "pnpm biome check --write",
+    "lint": "pnpm biome check --write ./src",
     "deploy": "vite build --base=/nvq-sp && gh-pages -d dist"
   },
   "devDependencies": {

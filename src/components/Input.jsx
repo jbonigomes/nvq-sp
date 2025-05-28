@@ -5,7 +5,9 @@ import Message from '/src/components/Message'
 
 export default ({ label, onChange, onBlur, value, error }) => (
   <fieldset>
-    <Label htmlFor={label} error={error}>{label}</Label>
+    <Label htmlFor={label} error={error}>
+      {label}
+    </Label>
     <input
       id={label}
       type="text"

@@ -15,7 +15,7 @@ const initialData = {
         ],
       },
       evidences: {
-        '6.01': {
+        6.01: {
           writeup: {
             points: [
               { label: 'Point 1', checked: false },
@@ -51,7 +51,7 @@ const initialData = {
         // ],
       },
       evidences: {
-        '6.01': {
+        6.01: {
           writeup: {
             points: [
               { label: 'Point 1', checked: false },
@@ -80,7 +80,7 @@ const initialData = {
         ],
       },
       evidences: {
-        '6.01': {
+        6.01: {
           writeup: {
             points: [
               { label: 'Point 1', checked: false },
@@ -111,7 +111,7 @@ const initialData = {
         ],
       },
       evidences: {
-        '6.01': {
+        6.01: {
           writeup: {
             points: [
               { label: 'Point 1', checked: false },
@@ -140,7 +140,7 @@ const initialData = {
         ],
       },
       evidences: {
-        '6.01': {
+        6.01: {
           writeup: {
             points: [
               { label: 'Point 1', checked: false },
@@ -169,7 +169,7 @@ const initialData = {
         ],
       },
       evidences: {
-        '6.01': {
+        6.01: {
           writeup: {
             points: [
               { label: 'Point 1', checked: false },
@@ -197,5 +197,5 @@ export const getData = async ({ course, level }) => {
     await Preferences.set({ key, value: JSON.stringify(initialData) })
   }
 
-  return (data[course][level] || initialData[course][level])
+  return data[course][level] || initialData[course][level]
 }

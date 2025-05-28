@@ -2,7 +2,7 @@ import React from 'react'
 
 export default ({ numerator, denominator, progress = 0 }) => (
   <div className="w-32 mx-auto flex items-center justify-center">
-    <svg viewBox="0 0 100 100" transform="rotate(-90)">
+    <svg viewBox="0 0 100 100" transform="rotate(-90)" title="progress">
       <circle
         r="45"
         cx="50"
@@ -21,7 +21,7 @@ export default ({ numerator, denominator, progress = 0 }) => (
         strokeLinecap="round"
         className="stroke-lime"
         strokeDasharray={2 * Math.PI * 45}
-        strokeDashoffset={(2 * Math.PI * 45) * ((100 - progress) / 100)}
+        strokeDashoffset={2 * Math.PI * 45 * ((100 - progress) / 100)}
       />
     </svg>
     {numerator && denominator ? (

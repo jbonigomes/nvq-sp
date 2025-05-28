@@ -5,8 +5,6 @@ export default ({ children }) => (
     <div className="p-2">
       <div className="w-16 h-1.5 bg-light-blue rounded-full mx-auto" />
     </div>
-    <ul className="border-y border-dark-blue">
-      {children}
-    </ul>
+    <ul className="border-y border-dark-blue">{children}</ul>
   </div>
 )

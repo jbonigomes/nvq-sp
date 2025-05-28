@@ -1,23 +1,23 @@
 import React from 'react'
 
 import { createRoot } from 'react-dom/client'
-import { BrowserRouter, Route, Routes } from 'react-router'
+import { MemoryRouter, Route, Routes } from 'react-router'
 
-import Course from './pages/welcome/course'
-import Evidence from './pages/evidences/[id]'
-import Evidences from './pages/evidences'
-import Gallery from './pages/evidences/[id]/gallery'
 import Home from './pages'
-import Level from './pages/welcome/level'
-import Module from './pages/modules/[id]'
-import Modules from './pages/modules'
-import Name from './pages/welcome/name'
-import Welcome from './pages/welcome'
+import Evidences from './pages/evidences'
+import Evidence from './pages/evidences/[id]'
+import Gallery from './pages/evidences/[id]/gallery'
 import Writeup from './pages/evidences/[id]/writeup'
+import Modules from './pages/modules'
+import Module from './pages/modules/[id]'
+import Welcome from './pages/welcome'
+import Course from './pages/welcome/course'
+import Level from './pages/welcome/level'
+import Name from './pages/welcome/name'
 
 createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <BrowserRouter>
+    <MemoryRouter>
       <Routes>
         <Route path="/welcome" element={<Welcome />} />
         <Route path="/welcome/name" element={<Name />} />
@@ -31,6 +31,6 @@ createRoot(document.getElementById('root')).render(
         <Route path="/evidences/:id/writeup" element={<Writeup />} />
         <Route path="*" element={<Home />} />
       </Routes>
-    </BrowserRouter>
-  </React.StrictMode>
+    </MemoryRouter>
+  </React.StrictMode>,
 )

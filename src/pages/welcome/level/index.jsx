@@ -2,13 +2,13 @@ import React from 'react'
 
 import { useNavigate } from 'react-router'
 
-import H1 from '/src/components/H1'
-import Steps from '/src/components/Steps'
-import Radio from '/src/components/Radio'
 import Button from '/src/components/Button'
-import Footer from '/src/components/Footer'
-import Section from '/src/components/Section'
 import Container from '/src/components/Container'
+import Footer from '/src/components/Footer'
+import H1 from '/src/components/H1'
+import Radio from '/src/components/Radio'
+import Section from '/src/components/Section'
+import Steps from '/src/components/Steps'
 
 import { setProfileLevel } from '/src/store/profile'
 
@@ -50,7 +50,9 @@ export default () => {
           />
         </Section>
         <Footer>
-          <Button type="submit" secondary>NEXT</Button>
+          <Button type="submit" secondary>
+            NEXT
+          </Button>
         </Footer>
       </form>
     </Container>

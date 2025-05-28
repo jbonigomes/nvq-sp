@@ -1,17 +1,18 @@
 import React from 'react'
 import { Link } from 'react-router'
 
-const linkClass = (active) => [
-  'flex',
-  'pt-3',
-  'flex-1',
-  'flex-col',
-  'border-t-2',
-  'text-white',
-  'justify-top',
-  'items-center',
-  active ? 'border-t-lime' : 'border-t-dark-blue',
-].join(' ')
+const linkClass = (active) =>
+  [
+    'flex',
+    'pt-3',
+    'flex-1',
+    'flex-col',
+    'border-t-2',
+    'text-white',
+    'justify-top',
+    'items-center',
+    active ? 'border-t-lime' : 'border-t-dark-blue',
+  ].join(' ')
 
 export default ({ active }) => (
   <div className="fixed bottom-0 left-0 right-0 flex bg-dark-blue pb-6">
@@ -20,6 +21,7 @@ export default ({ active }) => (
         width="20"
         height="20"
         fill="none"
+        title="home"
         strokeWidth="2"
         viewBox="0 0 24 24"
         strokeLinecap="round"
@@ -46,6 +48,7 @@ export default ({ active }) => (
         width="20"
         height="20"
         fill="none"
+        title="modules"
         strokeWidth="2"
         viewBox="0 0 24 24"
         strokeLinecap="round"
@@ -81,6 +84,7 @@ export default ({ active }) => (
         height="20"
         fill="none"
         strokeWidth="2"
+        title="evidences"
         viewBox="0 0 24 24"
         strokeLinecap="round"
         strokeLinejoin="round"

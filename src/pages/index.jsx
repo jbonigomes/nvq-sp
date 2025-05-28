@@ -2,20 +2,20 @@ import React from 'react'
 
 import { Link, useNavigate } from 'react-router'
 
+import Button from '/src/components/Button'
+import Container from '/src/components/Container'
 import H1 from '/src/components/H1'
 import H2 from '/src/components/H2'
 import Input from '/src/components/Input'
 import Modal from '/src/components/Modal'
-import Button from '/src/components/Button'
-import Section from '/src/components/Section'
-import Progress from '/src/components/Progress'
-import Container from '/src/components/Container'
 import Navigation from '/src/components/Navigation'
+import Progress from '/src/components/Progress'
+import Section from '/src/components/Section'
 
 import { getData } from '/src/store/data'
-import { isNameValid } from '/src/utils/validators'
+import { getProfile, resetProfile, setProfileName } from '/src/store/profile'
 import { calculateTotalProgress } from '/src/utils/calculatedFields'
-import { getProfile, setProfileName, resetProfile } from '/src/store/profile'
+import { isNameValid } from '/src/utils/validators'
 
 export default () => {
   const navigate = useNavigate()
@@ -87,7 +87,9 @@ export default () => {
         />
       </Section>
       <Section>
-        <Button onClick={onModalOpen} secondary>RESET</Button>
+        <Button onClick={onModalOpen} secondary>
+          RESET
+        </Button>
       </Section>
       <Navigation active="home" />
       {showModal && (

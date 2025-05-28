@@ -1,7 +1,11 @@
 import React from 'react'
 
 export default () => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1072 780">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 1072 780"
+    title="engineer"
+  >
     <path
       id="bubble"
       opacity=".1"
@@ -121,7 +125,7 @@ export default () => (
         'V 426', // TODO: Fix this
         'h 29',
         'c 27 63 37 136 7 197',
-        ].join(' ')}
+      ].join(' ')}
     />
 
     <path
@@ -654,19 +658,13 @@ export default () => (
     <path
       id="under-helmet"
       fill="#fed253"
-      d={[
-        'M 156 131',
-        's 7 12 17 6 0 -22 0 -22 -18 -2 -17 16',
-      ].join(' ')}
+      d={['M 156 131', 's 7 12 17 6 0 -22 0 -22 -18 -2 -17 16'].join(' ')}
     />
 
     <path
       id="under-helmet-shade"
       opacity=".1"
-      d={[
-        'M 156 131',
-        's 7 12 17 6 0 -22 0 -22 -18 -2 -17 16',
-      ].join(' ')}
+      d={['M 156 131', 's 7 12 17 6 0 -22 0 -22 -18 -2 -17 16'].join(' ')}
     />
 
     <path
@@ -1326,10 +1324,7 @@ export default () => (
     <path
       id="hand"
       fill="#ffa2a2"
-      d={[
-        'M 460 609',
-        's 35 49 73 3 27 -70 16 -72 -77 50 -89 69',
-      ].join(' ')}
+      d={['M 460 609', 's 35 49 73 3 27 -70 16 -72 -77 50 -89 69'].join(' ')}
     />
 
     <path
@@ -1438,6 +1433,6 @@ export default () => (
         'a 19 19 0 0 0 -4 10',
         's -6 5 -7 4',
       ].join(' ')}
-      />
+    />
   </svg>
 )

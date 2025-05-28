@@ -2,16 +2,16 @@ import React from 'react'
 
 import { useNavigate } from 'react-router'
 
-import H1 from '/src/components/H1'
-import Steps from '/src/components/Steps'
-import Input from '/src/components/Input'
 import Button from '/src/components/Button'
-import Footer from '/src/components/Footer'
-import Section from '/src/components/Section'
 import Container from '/src/components/Container'
+import Footer from '/src/components/Footer'
+import H1 from '/src/components/H1'
+import Input from '/src/components/Input'
+import Section from '/src/components/Section'
+import Steps from '/src/components/Steps'
 
-import { isNameValid } from '/src/utils/validators'
 import { getProfile, setProfileName } from '/src/store/profile'
+import { isNameValid } from '/src/utils/validators'
 
 export default () => {
   const navigate = useNavigate()
@@ -59,7 +59,9 @@ export default () => {
           <Input label="Name:" onChange={onChange} value={name} error={error} />
         </Section>
         <Footer>
-          <Button type="submit" secondary>NEXT</Button>
+          <Button type="submit" secondary>
+            NEXT
+          </Button>
         </Footer>
       </form>
     </Container>

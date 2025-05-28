@@ -1,7 +1,7 @@
 import React from 'react'
 
-import H2 from '/src/components/H2'
 import Button from '/src/components/Button'
+import H2 from '/src/components/H2'
 
 export default ({ text, action, onClick }) => (
   <div
@@ -43,8 +43,12 @@ export default ({ text, action, onClick }) => (
       </h1>
       <H2>{text}</H2>
       <div className="flex gap-x-5">
-        <Button onClick={onClick(false)} small secondary>CANCEL</Button>
-        <Button onClick={onClick(true)} small>{action}</Button>
+        <Button onClick={onClick(false)} small secondary>
+          CANCEL
+        </Button>
+        <Button onClick={onClick(true)} small>
+          {action}
+        </Button>
       </div>
     </div>
   </div>

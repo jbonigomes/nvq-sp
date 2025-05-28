@@ -2,13 +2,13 @@ import React from 'react'
 
 import { useNavigate } from 'react-router'
 
-import H1 from '/src/components/H1'
-import Drawer from '/src/components/Drawer'
-import Section from '/src/components/Section'
-import Progress from '/src/components/Progress'
 import Container from '/src/components/Container'
-import Navigation from '/src/components/Navigation'
+import Drawer from '/src/components/Drawer'
 import DrawerItem from '/src/components/DrawerItem'
+import H1 from '/src/components/H1'
+import Navigation from '/src/components/Navigation'
+import Progress from '/src/components/Progress'
+import Section from '/src/components/Section'
 
 import { getData } from '/src/store/data'
 import { getProfile } from '/src/store/profile'
