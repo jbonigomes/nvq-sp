@@ -15,6 +15,8 @@ import Course from './pages/welcome/course'
 import Level from './pages/welcome/level'
 import Name from './pages/welcome/name'
 
+import './index.css'
+
 createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <MemoryRouter>
