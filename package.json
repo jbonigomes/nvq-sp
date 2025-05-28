@@ -6,9 +6,11 @@
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "start": "vite",
+    "lint": "pnpm biome check --write",
     "deploy": "vite build --base=/nvq-sp && gh-pages -d dist"
   },
   "devDependencies": {
+    "@biomejs/biome": "1.9.4",
     "@capacitor/cli": "7.2.0",
     "@capacitor/core": "7.2.0",
     "@capacitor/preferences": "7.0.1",
