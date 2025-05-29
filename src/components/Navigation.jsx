@@ -26,7 +26,7 @@ export default ({ active }) => (
         viewBox="0 0 24 24"
         strokeLinecap="round"
         strokeLinejoin="round"
-        className={active === 'home' ? 'stroke-lime' : 'stroke-white'}
+        className={active === 'home' ? 'stroke-lime' : 'stroke-light-grey'}
       >
         <path
           d={[
@@ -53,7 +53,7 @@ export default ({ active }) => (
         viewBox="0 0 24 24"
         strokeLinecap="round"
         strokeLinejoin="round"
-        className={active === 'modules' ? 'stroke-lime' : 'stroke-white'}
+        className={active === 'modules' ? 'stroke-lime' : 'stroke-light-grey'}
       >
         <path
           d={[
@@ -88,7 +88,7 @@ export default ({ active }) => (
         viewBox="0 0 24 24"
         strokeLinecap="round"
         strokeLinejoin="round"
-        className={active === 'evidences' ? 'stroke-lime' : 'stroke-white'}
+        className={active === 'evidences' ? 'stroke-lime' : 'stroke-light-grey'}
       >
         <path
           d={[

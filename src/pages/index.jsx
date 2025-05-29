@@ -7,14 +7,13 @@ import Container from '/src/components/Container'
 import H1 from '/src/components/H1'
 import H2 from '/src/components/H2'
 import Input from '/src/components/Input'
+import Logo from '/src/components/Logo'
 import Modal from '/src/components/Modal'
 import Navigation from '/src/components/Navigation'
-import Progress from '/src/components/Progress'
 import Section from '/src/components/Section'
 
 import { getData } from '/src/store/data'
 import { getProfile, resetProfile, setProfileName } from '/src/store/profile'
-import { calculateTotalProgress } from '/src/utils/calculatedFields'
 import { isNameValid } from '/src/utils/validators'
 
 export default () => {
@@ -22,14 +21,13 @@ export default () => {
 
   const [error, setError] = React.useState('')
   const [profile, setProfile] = React.useState()
-  const [progress, setProgress] = React.useState(0)
   const [showModal, setShowModal] = React.useState(false)
 
   const onChange = async ({ target }) => {
-    setError('')
-    setProfile({ ...profile, name: target.value })
+    // TODO: we need to handle each field individually
   }
 
+  // TODO: we need to handle each field individually
   const onBlur = async () => {
     if (isNameValid(profile?.name)) {
       await setProfileName(profile?.name ?? '')
@@ -56,22 +54,19 @@ export default () => {
       const profileStore = await getProfile()
 
       if (profileStore?.course && profileStore?.level) {
-        const dataStore = await getData(profileStore)
-
         setProfile(profileStore)
-        setProgress(calculateTotalProgress(dataStore))
       } else {
         navigate('/welcome')
       }
     }
 
     init()
-  }, [setProfile, setProgress])
+  }, [])
 
   return (
     <Container>
       <Section>
-        <Progress progress={progress} />
+        <Logo />
       </Section>
       <Section>
         <H1 className="text-center">{profile?.level ?? ''}</H1>
@@ -80,10 +75,36 @@ export default () => {
       <Section>
         <Input
           label="Name"
-          error={error}
-          onBlur={onBlur}
           onChange={onChange}
           value={profile?.name ?? ''}
+        />
+      </Section>
+      <Section>
+        <Input
+          label="Email"
+          onChange={onChange}
+          value={profile?.email ?? ''}
+        />
+      </Section>
+      <Section>
+        <Input
+          label="First Aider"
+          onChange={onChange}
+          value={profile?.firstAider ?? ''}
+        />
+      </Section>
+      <Section>
+        <Input
+          label="School"
+          onChange={onChange}
+          value={profile?.school ?? ''}
+        />
+      </Section>
+      <Section>
+        <Input
+          label="Instructor"
+          onChange={onChange}
+          value={profile?.instructor ?? ''}
         />
       </Section>
       <Section>

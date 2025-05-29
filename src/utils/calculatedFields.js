@@ -20,32 +20,3 @@ const aggregateEvidences = (evidences) => ({
     0,
   ),
 })
-
-export const calculateModulesProgress = ({ modules }) => {
-  const { answered, length } = aggregateModules(modules)
-
-  return {
-    numerator: answered,
-    denominator: length,
-    progress: (answered * 100) / (length || 1),
-  }
-}
-
-export const calculateEvidencesProgress = ({ evidences }) => {
-  const { answered, length } = aggregateEvidences(evidences)
-
-  return {
-    numerator: answered,
-    denominator: length,
-    progress: (answered * 100) / (length || 1),
-  }
-}
-
-export const calculateTotalProgress = ({ modules, evidences }) => {
-  const modulesAgg = aggregateModules(modules)
-  const evidencesAgg = aggregateEvidences(evidences)
-  const totalLength = modulesAgg.length + evidencesAgg.length
-  const totalAnswered = modulesAgg.answered + evidencesAgg.answered
-
-  return (totalAnswered * 100) / (totalLength || 1)
-}

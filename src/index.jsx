@@ -12,8 +12,8 @@ import Modules from './pages/modules'
 import Module from './pages/modules/[id]'
 import Welcome from './pages/welcome'
 import Course from './pages/welcome/course'
-import Level from './pages/welcome/level'
-import Name from './pages/welcome/name'
+import Profile from './pages/welcome/profile'
+import School from './pages/welcome/school'
 
 import './index.css'
 
@@ -22,9 +22,9 @@ createRoot(document.getElementById('root')).render(
     <MemoryRouter>
       <Routes>
         <Route path="/welcome" element={<Welcome />} />
-        <Route path="/welcome/name" element={<Name />} />
-        <Route path="/welcome/level" element={<Level />} />
+        <Route path="/welcome/profile" element={<Profile />} />
         <Route path="/welcome/course" element={<Course />} />
+        <Route path="/welcome/school" element={<School />} />
         <Route path="/modules" element={<Modules />} />
         <Route path="/modules/:id" element={<Module />} />
         <Route path="/evidences" element={<Evidences />} />

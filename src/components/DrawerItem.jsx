@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router'
 
 export default ({ path, label }) => (
-  <li className="border-y border-dark-blue px-4 py-5">
+  <li className="border-b-1 border-light-blue py-4">
     <Link to={`/${path}/${label}`} className="flex text-white">
       <svg
         width="24"
@@ -37,9 +37,9 @@ export default ({ path, label }) => (
         fill="none"
         strokeWidth="2"
         title="chevron"
-        class="flex-none"
         viewBox="0 0 24 24"
         stroke="currentColor"
+        className="flex-none"
         strokeLinecap="round"
         strokeLinejoin="round"
       >

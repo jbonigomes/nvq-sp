@@ -4,33 +4,40 @@ import Label from '/src/components/Label'
 import Message from '/src/components/Message'
 
 export default ({ label, onChange, onBlur, value, error }) => (
-  <fieldset>
-    <Label htmlFor={label} error={error}>
-      {label}
-    </Label>
-    <input
-      id={label}
-      type="text"
-      value={value}
-      onBlur={onBlur}
-      onChange={onChange}
+  <>
+    <fieldset
       className={[
-        'mt-1',
-        'px-3',
-        'block',
-        'py-1.5',
-        'w-full',
         'rounded',
         'bordered',
-        'border-y-2',
-        'bg-dark-blue',
-        'text-light-grey',
-        'border-dark-blue',
-        'focus:outline-none',
-        'focus:border-b-light-grey',
-        error ? 'border-b-red' : '',
+        'border-2',
+        'relative',
+        'border-light-grey',
+        'has-[:focus]:text-lime',
+        'has-[:focus]:border-lime',
+        error ? 'border-red' : '',
+        error ? 'text-red' : 'text-light-grey',
       ].join(' ')}
-    />
+    >
+      <Label htmlFor={label} error={error}>
+        {label}:
+      </Label>
+      <input
+        id={label}
+        type="text"
+        value={value}
+        onBlur={onBlur}
+        onChange={onChange}
+        className={[
+          'mt-1',
+          'px-3',
+          'py-2',
+          'block',
+          'w-full',
+          'text-light-grey',
+          'focus:outline-none',
+        ].join(' ')}
+      />
+    </fieldset>
     {error && <Message>{error}</Message>}
-  </fieldset>
+  </>
 )

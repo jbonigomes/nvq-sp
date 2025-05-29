@@ -3,16 +3,18 @@ import React from 'react'
 import Label from '/src/components/Label'
 import Message from '/src/components/Message'
 
-export default ({ options, error, onChange }) => (
+export default ({ options, name, value, error, onChange }) => (
   <>
+    {error && <Message>{error}</Message>}
     {options.map((option) => (
       <fieldset key={option} className="flex items-center mt-8 mb-4">
         <input
           id={option}
+          name={name}
           type="radio"
           value={option}
-          name="radio-group"
           onChange={onChange}
+          checked={option === value}
           className={[
             'mx-2',
             'w-3.5',
@@ -27,10 +29,11 @@ export default ({ options, error, onChange }) => (
           ].join(' ')}
         />
         <div className="pl-3.5">
-          <Label htmlFor={option}>{option}</Label>
+          <label htmlFor={option} className="text-sm font-light text-light-grey">
+            {option}
+          </label>
         </div>
       </fieldset>
     ))}
-    {error && <Message>{error}</Message>}
   </>
 )

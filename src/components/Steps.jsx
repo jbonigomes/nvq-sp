@@ -21,21 +21,15 @@ const circleClassNames = (index, target) =>
 
 export default ({ step }) => (
   <div className="flex items-center mb-12">
-    {/* TODO: Re-instate this when levels are available
-    <Link className={circleClassNames(1, step)} to="/welcome/name">1</Link>
-    */}
-    <Link className={circleClassNames(1, step)} to="/welcome">
+    <Link className={circleClassNames(1, step)} to="/welcome/profile">
       1
     </Link>
     <div className={lineClassNames(2, step)} />
-    {/* TODO: Re-instate this when levels are available
-    <Link className={circleClassNames(2, step)} to="/welcome/level">2</Link>
-    */}
-    <Link className={circleClassNames(2, step)} to="/welcome/name">
+    <Link className={circleClassNames(2, step)} to="/welcome/course">
       2
     </Link>
     <div className={lineClassNames(3, step)} />
-    <Link className={circleClassNames(3, step)} to="/welcome/course">
+    <Link className={circleClassNames(3, step)} to="/welcome/school">
       3
     </Link>
   </div>

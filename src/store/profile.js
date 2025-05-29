@@ -12,6 +12,16 @@ export const setProfileName = async (name) => {
   await Preferences.set({ key, value: JSON.stringify({ ...store, name }) })
 }
 
+export const setProfileEmail = async (email) => {
+  const store = await getProfile()
+  await Preferences.set({ key, value: JSON.stringify({ ...store, email }) })
+}
+
+export const setProfileFirstAider = async (firstAider) => {
+  const store = await getProfile()
+  await Preferences.set({ key, value: JSON.stringify({ ...store, firstAider }) })
+}
+
 export const setProfileLevel = async (level) => {
   const store = await getProfile()
   await Preferences.set({ key, value: JSON.stringify({ ...store, level }) })
@@ -19,8 +29,15 @@ export const setProfileLevel = async (level) => {
 
 export const setProfileCourse = async (course) => {
   const store = await getProfile()
-  await Preferences.set({
-    key,
-    value: JSON.stringify({ ...store, course, level: 'NVQ Level 3' }), // TODO: Remove this when levels are re-instated
-  })
+  await Preferences.set({ key, value: JSON.stringify({ ...store, course }) })
+}
+
+export const setProfileSchool = async (school) => {
+  const store = await getProfile()
+  await Preferences.set({ key, value: JSON.stringify({ ...store, school }) })
+}
+
+export const setProfileInstructor = async (instructor) => {
+  const store = await getProfile()
+  await Preferences.set({ key, value: JSON.stringify({ ...store, instructor }) })
 }
