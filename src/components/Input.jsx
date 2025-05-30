@@ -34,6 +34,7 @@ export default ({ label, onChange, onBlur, value, error }) => (
           'block',
           'w-full',
           'text-light-grey',
+          'appearance-none',
           'focus:outline-none',
         ].join(' ')}
       />

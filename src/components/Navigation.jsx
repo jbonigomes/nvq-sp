@@ -39,7 +39,7 @@ export default ({ active }) => (
             'v -11',
           ].join(' ')}
         />
-        <polyline points="9 22 9 12 15 12 15 22" />
+        <polyline points="9 20 9 12 15 12 15 20" strokeLinecap="square" />
       </svg>
       <div className="text-xs font-bold mt-1">Home</div>
     </Link>

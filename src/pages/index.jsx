@@ -67,8 +67,6 @@ export default () => {
     <Container>
       <Section>
         <Logo />
-      </Section>
-      <Section>
         <H1 className="text-center">{profile?.level ?? ''}</H1>
         <H2>{profile?.course ?? ''}</H2>
       </Section>
