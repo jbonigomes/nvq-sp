@@ -10,7 +10,7 @@ export default ({ children, htmlFor, error }) => (
       'bg-blue',
       'text-sm',
       'absolute',
-      'font-light',
+      'font-semibold',
     ].join(' ')}
   >
     {children}
