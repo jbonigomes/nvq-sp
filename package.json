@@ -7,12 +7,14 @@
     "preinstall": "npx only-allow pnpm",
     "start": "vite",
     "lint": "pnpm biome check --write ./src",
-    "deploy": "vite build --base=/nvq-sp && gh-pages -d dist"
+    "deploy": "vite build --base=/nvq-sp && gh-pages -d dist",
+    "ios": "vite build && npx cap copy && npx cap open ios"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
     "@capacitor/cli": "7.2.0",
     "@capacitor/core": "7.2.0",
+    "@capacitor/ios": "7.2.0",
     "@capacitor/preferences": "7.0.1",
     "@tailwindcss/vite": "4.1.7",
     "@vitejs/plugin-react": "4.5.0",

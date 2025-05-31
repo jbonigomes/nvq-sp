@@ -17,6 +17,9 @@ importers:
       '@capacitor/core':
         specifier: 7.2.0
         version: 7.2.0
+      '@capacitor/ios':
+        specifier: 7.2.0
+        version: 7.2.0(@capacitor/core@7.2.0)
       '@capacitor/preferences':
         specifier: 7.0.1
         version: 7.0.1(@capacitor/core@7.2.0)
@@ -197,6 +200,11 @@ packages:
 
   '@capacitor/core@7.2.0':
     resolution: {integrity: sha512-2zCnA6RJeZ9ec4470o8QMZEQTWpekw9FNoqm5TLc10jeCrhvHVI8MPgxdZVc3mOdFlyieYu4AS1fNxSqbS57Pw==}
+
+  '@capacitor/ios@7.2.0':
+    resolution: {integrity: sha512-MQgRZcXZpbpjN83bjkGrzQd7s3XeHBZplmWf38/msF/siMGJKLrXNmNzmmPIWA5Xpi/aH6UoJFk1wXuU2U+zMg==}
+    peerDependencies:
+      '@capacitor/core': ^7.2.0
 
   '@capacitor/preferences@7.0.1':
     resolution: {integrity: sha512-XF9jOHzvoIBZLwZr/EX6aVaUO1d8Mx7TwBLQS33pYHOliCW5knT5KUkFOXNNYxh9qqODYesee9xuQIKNJpQBag==}
@@ -1807,6 +1815,10 @@ snapshots:
   '@capacitor/core@7.2.0':
     dependencies:
       tslib: 2.4.0
+
+  '@capacitor/ios@7.2.0(@capacitor/core@7.2.0)':
+    dependencies:
+      '@capacitor/core': 7.2.0
 
   '@capacitor/preferences@7.0.1(@capacitor/core@7.2.0)':
     dependencies:
