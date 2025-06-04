@@ -11,6 +11,7 @@ import Button from '/src/components/Button'
 import Container from '/src/components/Container'
 import Header from '/src/components/Header'
 import Input from '/src/components/Input'
+import Main from '/src/components/Main'
 import Section from '/src/components/Section'
 import Subnav from '/src/components/Subnav'
 
@@ -137,11 +138,11 @@ export default () => {
   }, [])
 
   return (
-    <>
+    <Container>
       <Header backTo="/evidences" onClick={onDownload}>
         Evidence Details
       </Header>
-      <Container className="mt-17">
+      <Main>
         <Section>
           <Input
             label="Title"
@@ -179,14 +180,14 @@ export default () => {
           />
         </Section>
         <Section>
-        <Button onClick={onDelete} secondary warning>
-          DELETE
-        </Button>
-      </Section>
-      </Container>
+          <Button onClick={onDelete} secondary warning>
+            DELETE
+          </Button>
+        </Section>
+      </Main>
       {evidenceTitle && (
         <Subnav id={id} active="details" />
       )}
-    </>
+    </Container>
   )
 }

@@ -8,7 +8,7 @@ export default ({ label, onChange, onBlur, value, error }) => (
       className={[
         'rounded',
         'bordered',
-        'border-2',
+        'border-1',
         'relative',
         error ? 'text-red' : 'text-white has-[:focus]:text-lime',
         error ? 'border-red' : ' border-light-grey has-[:focus]:border-lime',

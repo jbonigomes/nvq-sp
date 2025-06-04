@@ -1,8 +1,8 @@
 import React from 'react'
 
-export default () => (
-  <div className="flex justify-center mb-3">
-    <svg width="80" viewBox="0 0 130 130" fill="none">
+export default ({ small }) => (
+  <div className="flex justify-center my-2">
+    <svg width={small ? 40 : 60} height={small ? 40 : 60} viewBox="0 0 130 130" fill="none">
       <defs>
         <linearGradient
             y1="9"

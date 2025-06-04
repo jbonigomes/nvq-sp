@@ -10,30 +10,29 @@ export default ({ backTo, children, onClick }) => (
       'flex',
       'text',
       'gap-2',
-      'fixed',
-      'top-0',
-      'left-0',
-      'right-0',
       'text-lg',
+      'shadow-md',
       'text-white',
       'bg-dark-blue',
     ].join(' ')}
   >
-    <Link to={backTo}>
-      <svg
-        width="28"
-        height="28"
-        fill="none"
-        strokeWidth="2"
-        title="chevron"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <polyline points="15 18 9 12 15 6" />
-      </svg>
-    </Link>
+    {backTo && (
+      <Link to={backTo}>
+        <svg
+          width="28"
+          height="28"
+          fill="none"
+          strokeWidth="2"
+          title="chevron"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <polyline points="15 18 9 12 15 6" />
+        </svg>
+      </Link>
+    )}
     <span className="flex-1">{children}</span>
     {onClick && (
       <button className="mr-2" onClick={onClick}>

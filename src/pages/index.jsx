@@ -6,9 +6,11 @@ import Button from '/src/components/Button'
 import Container from '/src/components/Container'
 import H1 from '/src/components/H1'
 import H2 from '/src/components/H2'
+import Header from '/src/components/Header'
 import Input from '/src/components/Input'
 import Logo from '/src/components/Logo'
 import Modal from '/src/components/Modal'
+import Main from '/src/components/Main'
 import Navigation from '/src/components/Navigation'
 import Section from '/src/components/Section'
 
@@ -64,60 +66,64 @@ export default () => {
   }, [])
 
   return (
-    <Container>
-      <Section>
-        <Logo />
-        <H1 className="text-center">{profile?.level ?? ''}</H1>
-        <H2>{profile?.course ?? ''}</H2>
-      </Section>
-      <Section>
-        <Input
-          label="Name"
-          onChange={onChange}
-          value={profile?.name ?? ''}
-        />
-      </Section>
-      <Section>
-        <Input
-          label="Email"
-          onChange={onChange}
-          value={profile?.email ?? ''}
-        />
-      </Section>
-      <Section>
-        <Input
-          label="First Aider"
-          onChange={onChange}
-          value={profile?.firstAider ?? ''}
-        />
-      </Section>
-      <Section>
-        <Input
-          label="Location"
-          onChange={onChange}
-          value={profile?.location ?? ''}
-        />
-      </Section>
-      <Section>
-        <Input
-          label="School"
-          onChange={onChange}
-          value={profile?.school ?? ''}
-        />
-      </Section>
-      <Section>
-        <Input
-          label="Instructor"
-          onChange={onChange}
-          value={profile?.instructor ?? ''}
-        />
-      </Section>
-      <Section>
-        <Button onClick={onModalOpen} secondary>
-          RESET
-        </Button>
-      </Section>
-      <Navigation active="home" />
+    <>
+      <Container>
+        <Header>
+          <Logo />
+          <H1 className="text-center">NVQ Level 2</H1>
+          <H2>Installation & Commissioning</H2>
+        </Header>
+        <Main>
+          <Section>
+            <Input
+              label="Name"
+              onChange={onChange}
+              value={profile?.name ?? ''}
+            />
+          </Section>
+          <Section>
+            <Input
+              label="Email"
+              onChange={onChange}
+              value={profile?.email ?? ''}
+            />
+          </Section>
+          <Section>
+            <Input
+              label="First Aider"
+              onChange={onChange}
+              value={profile?.firstAider ?? ''}
+            />
+          </Section>
+          <Section>
+            <Input
+              label="Location"
+              onChange={onChange}
+              value={profile?.location ?? ''}
+            />
+          </Section>
+          <Section>
+            <Input
+              label="School"
+              onChange={onChange}
+              value={profile?.school ?? ''}
+            />
+          </Section>
+          <Section>
+            <Input
+              label="Instructor"
+              onChange={onChange}
+              value={profile?.instructor ?? ''}
+            />
+          </Section>
+          <Section>
+            <Button onClick={onModalOpen} secondary>
+              RESET
+            </Button>
+          </Section>
+        </Main>
+        <Navigation active="home" />
+      </Container>
       {showModal && (
         <Modal
           action="RESET"
@@ -125,6 +131,6 @@ export default () => {
           text="This action will reset all your progress"
         />
       )}
-    </Container>
+    </>
   )
 }

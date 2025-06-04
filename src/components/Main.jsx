@@ -1,7 +1,7 @@
 import React from 'react'
 
 export default ({ children }) => (
-  <h2 className="text-white text-lg mb-7 font-light">
+  <main className="overflow-y-auto px-4 bg-blue">
     {children}
-  </h2>
+  </main>
 )

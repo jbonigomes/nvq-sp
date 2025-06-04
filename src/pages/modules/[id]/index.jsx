@@ -9,6 +9,7 @@ import { Filesystem, Directory } from '@capacitor/filesystem'
 
 import Container from '/src/components/Container'
 import Header from '/src/components/Header'
+import Main from '/src/components/Main'
 import Section from '/src/components/Section'
 
 pdfMake.addVirtualFileSystem(pdfFonts);
@@ -44,11 +45,11 @@ export default () => {
   }
 
   return (
-    <>
+    <Container>
       <Header backTo="/modules" onClick={onDownload}>
         {id}
       </Header>
-      <Container className="mt-11">
+      <Main>
         <Section>
           <div>The first question goes here?</div>
           <textarea />
@@ -89,7 +90,7 @@ export default () => {
           <div>The next question goes here?</div>
           <textarea />
         </Section>
-      </Container>
-    </>
+      </Main>
+    </Container>
   )
 }

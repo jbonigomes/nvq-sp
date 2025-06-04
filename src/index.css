@@ -4,6 +4,10 @@ header {
   padding-top: calc(var(--spacing) * 2 + env(safe-area-inset-top));
 }
 
+footer {
+  padding-bottom: calc(var(--spacing) * 2 + env(safe-area-inset-bottom));
+}
+
 @theme {
   --color-red: #ee5555;
   --color-lime: #77dd77;
