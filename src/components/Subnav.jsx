@@ -21,17 +21,19 @@ export default ({ id, active }) => (
         width="20"
         height="20"
         fill="none"
-        strokeWidth="2"
         title="details"
+        stroke-width="2"
         viewBox="0 0 24 24"
         stroke="currentColor"
-        strokeLinecap="round"
-        strokeLinejoin="round"
+        stroke-linecap="round"
+        stroke-linejoin="round"
         className={active === 'details' ? 'stroke-lime' : 'stroke-light-grey'}
       >
-        {/* TODO: fix those */}
-        <path d="M16 4 h2 a2 2 0 0 1 2 2 v14 a2 2 0 0 1 -2 2 H6 a2 2 0 0 1 -2 -2 V6 a2 2 0 0 1 2 -2 h2" />
-        <rect x="8" y="2" width="8" height="4" rx="1" ry="1" />
+        <polyline points="10 9 9 9 8 9" />
+        <polyline points="14 2 14 8 20 8" />
+        <line x1="16" y1="13" x2="8" y2="13" />
+        <line x1="16" y1="17" x2="8" y2="17" />
+        <path d="M14 2 H6 a2 2 0 0 0 -2 2 v16 a2 2 0 0 0 2 2 h12 a2 2 0 0 0 2 -2 V8z" />
       </svg>
       <div className="text-xs font-bold mt-1">Details</div>
     </Link>
@@ -79,25 +81,15 @@ export default ({ id, active }) => (
         strokeWidth="2"
         title="materials"
         viewBox="0 0 24 24"
+        stroke="currentColor"
         strokeLinecap="round"
         strokeLinejoin="round"
         className={active === 'materials' ? 'stroke-lime' : 'stroke-light-grey'}
       >
-        <path
-          d={[
-            'M 14.7 6.3', // TODO: Fix fraction
-            'a 1 1 0 0 0 0 1.4', // TODO: Fix fraction
-            'l 1.6 1.6', // TODO: Fix fraction
-            'a 1 1 0 0 0 1.4 0', // TODO: Fix fraction
-            'l 3.77 -3.77', // TODO: Fix fraction
-            'a 6 6 0 0 1 -7.94 7.94', // TODO: Fix fraction
-            'l -6.91 6.91', // TODO: Fix fraction
-            'a 2.12 2.12 0 0 1 -3 -3',
-            'l 6.91 -6.91', // TODO: Fix fraction
-            'a 6 6 0 0 1 7.94 -7.94', // TODO: Fix fraction
-            'l -3.76 3.76', // TODO: Fix fraction
-          ].join(' ')}
-        />
+        {/* TODO: fix this */}
+        <path d="M6 2 L3 6 v14 a2 2 0 0 0 2 2 h14 a2 2 0 0 0 2 -2 V6 l-3 -4z" />
+        <line x1="3" y1="6" x2="21" y2="6" />
+        <path d="M16 10 a4 4 0 0 1 -8 0" />
       </svg>
       <div className="text-xs font-bold mt-1">Materials</div>
     </Link>
