@@ -24,7 +24,7 @@ export default () => {
 
       if (profileStore?.course && profileStore?.level) {
         const { evidences } = await getData(profileStore)
-        setEvidences(Object.keys(evidences))
+        setEvidences(evidences)
       } else {
         navigate('/welcome')
       }
@@ -35,24 +35,14 @@ export default () => {
 
   return (
     <Container>
-      <Section className="fixed top-0 left-0 right-0">
+      <Section className="fixed top-0 left-0 right-0 pt-safe-area-inset-top">
         <Logo />
         <H1 className="text-center mt-3">Evidences</H1>
       </Section>
       <Drawer>
-        {evidences.map((evidence) => (
-          <DrawerItem key={evidence} label={evidence} path="evidences" />
+        {evidences.map(({ id }) => (
+          <DrawerItem key={id} label={id} path="evidences" />
         ))}
-        {/* TODO: Remove test data below */}
-        <DrawerItem label="6.02" path="evidences" />
-        <DrawerItem label="6.03" path="evidences" />
-        <DrawerItem label="6.04" path="evidences" />
-        <DrawerItem label="6.05" path="evidences" />
-        <DrawerItem label="6.06" path="evidences" />
-        <DrawerItem label="6.07" path="evidences" />
-        <DrawerItem label="6.08" path="evidences" />
-        <DrawerItem label="6.09" path="evidences" />
-        <DrawerItem label="6.10" path="evidences" />
       </Drawer>
       <Navigation active="evidences" />
     </Container>

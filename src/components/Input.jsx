@@ -1,6 +1,5 @@
 import React from 'react'
 
-import Label from '/src/components/Label'
 import Message from '/src/components/Message'
 
 export default ({ label, onChange, onBlur, value, error }) => (
@@ -11,16 +10,24 @@ export default ({ label, onChange, onBlur, value, error }) => (
         'bordered',
         'border-2',
         'relative',
-        'border-light-grey',
-        'has-[:focus]:text-lime',
-        'has-[:focus]:border-lime',
-        error ? 'border-red' : '',
-        error ? 'text-red' : 'text-light-grey',
+        error ? 'text-red' : 'text-white has-[:focus]:text-lime',
+        error ? 'border-red' : ' border-light-grey has-[:focus]:border-lime',
       ].join(' ')}
     >
-      <Label htmlFor={label} error={error}>
+      <label
+        htmlFor={label}
+        className={[
+          'px-1',
+          '-top-3',
+          'left-2',
+          'bg-blue',
+          'text-sm',
+          'absolute',
+          'font-semibold',
+        ].join(' ')}
+      >
         {label}:
-      </Label>
+      </label>
       <input
         id={label}
         type="text"

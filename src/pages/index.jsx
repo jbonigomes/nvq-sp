@@ -93,6 +93,13 @@ export default () => {
       </Section>
       <Section>
         <Input
+          label="Location"
+          onChange={onChange}
+          value={profile?.location ?? ''}
+        />
+      </Section>
+      <Section>
+        <Input
           label="School"
           onChange={onChange}
           value={profile?.school ?? ''}

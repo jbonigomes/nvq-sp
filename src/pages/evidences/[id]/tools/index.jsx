@@ -16,14 +16,14 @@ export default () => {
   return (
     <>
       <Header backTo="/evidences" onClick={onDownload}>
-        {id} Writeup
+        {id} Tools
       </Header>
       <Container className="mt-17">
         <Section>
-          Write up
+          Tools
         </Section>
       </Container>
-      <Subnav id={id} active="writeup" />
+      <Subnav id={id} active="tools" />
     </>
   )
 }

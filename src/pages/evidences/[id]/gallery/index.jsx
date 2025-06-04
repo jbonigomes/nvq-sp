@@ -1,13 +1,29 @@
 import React from 'react'
-import { Link, useParams } from 'react-router'
+import { useParams } from 'react-router'
+
+import Container from '/src/components/Container'
+import Header from '/src/components/Header'
+import Section from '/src/components/Section'
+import Subnav from '/src/components/Subnav'
 
 export default () => {
   const { id } = useParams()
 
+  const onDownload = () => {
+    // TODO: should abstract this
+  }
+
   return (
     <>
-      <Link to={`/evidences/${id}`}>&lt; Back</Link>
-      <h1>Gallery {id}</h1>
+      <Header backTo="/evidences" onClick={onDownload}>
+        {id} Gallery
+      </Header>
+      <Container className="mt-17">
+        <Section>
+          Gallery
+        </Section>
+      </Container>
+      <Subnav id={id} active="gallery" />
     </>
   )
 }

@@ -23,8 +23,8 @@ export default () => {
       const profileStore = await getProfile()
 
       if (profileStore?.course && profileStore?.level) {
-        const dataStore = await getData(profileStore)
-        setModules(Object.keys(dataStore.modules))
+        const { modules } = await getData(profileStore)
+        setModules(Object.keys(modules))
       } else {
         navigate('/welcome')
       }
@@ -35,7 +35,7 @@ export default () => {
 
   return (
     <Container>
-      <Section className="fixed top-0 left-0 right-0">
+      <Section className="fixed top-0 left-0 right-0 pt-safe-area-inset-top">
         <Logo />
         <H1 className="text-center mt-3">Modules</H1>
       </Section>

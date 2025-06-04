@@ -17,6 +17,11 @@ export const setProfileEmail = async (email) => {
   await Preferences.set({ key, value: JSON.stringify({ ...store, email }) })
 }
 
+export const setProfileLocation = async (location) => {
+  const store = await getProfile()
+  await Preferences.set({ key, value: JSON.stringify({ ...store, location }) })
+}
+
 export const setProfileFirstAider = async (firstAider) => {
   const store = await getProfile()
   await Preferences.set({ key, value: JSON.stringify({ ...store, firstAider }) })

@@ -10,28 +10,28 @@ const initialData = {
           {
             question: 'Question 1',
             options: [],
-            answer: '',
+            answer: [],
           },
         ],
       },
-      evidences: {
-        6.01: {
-          writeup: {
-            points: [
-              { label: 'Point 1', checked: false },
-              { label: 'Point 2', checked: false },
-            ],
-            answer: '',
-          },
-          questions: [
-            {
-              question: 'Question 1?',
-              options: [],
-              answer: '',
-            },
-          ],
+      evidences: [
+        {
+          id: '6.01',
+          writeup: '',
+          date: '01/02/2025',
+          tools: [],
+          gallery: [],
+          materials: [],
         },
-      },
+        {
+          id: '6.02',
+          writeup: '',
+          date: '04/05/2025',
+          tools: [],
+          gallery: [],
+          materials: [],
+        },
+      ],
     },
     'NVQ Level 3': {
       modules: {
@@ -39,35 +39,11 @@ const initialData = {
           {
             question: 'Question 1',
             options: [],
-            answer: '',
+            answer: [],
           },
         ],
-        // QICM002: [
-        //   {
-        //     question: 'Question 1',
-        //     options: [],
-        //     answer: '',
-        //   },
-        // ],
       },
-      evidences: {
-        6.01: {
-          writeup: {
-            points: [
-              { label: 'Point 1', checked: false },
-              { label: 'Point 2', checked: false },
-            ],
-            answer: '',
-          },
-          questions: [
-            {
-              question: 'Question 1?',
-              options: [],
-              answer: '',
-            },
-          ],
-        },
-      },
+      evidences: {},
     },
     'NVQ Level 4': {
       modules: {
@@ -75,28 +51,11 @@ const initialData = {
           {
             question: 'Question 1',
             options: [],
-            answer: '',
+            answer: [],
           },
         ],
       },
-      evidences: {
-        6.01: {
-          writeup: {
-            points: [
-              { label: 'Point 1', checked: false },
-              { label: 'Point 2', checked: false },
-            ],
-            answer: '',
-          },
-          questions: [
-            {
-              question: 'Question 1?',
-              options: [],
-              answer: '',
-            },
-          ],
-        },
-      },
+      evidences: {},
     },
   },
   'Maintenance & Service': {
@@ -106,28 +65,11 @@ const initialData = {
           {
             question: 'Question 1',
             options: [],
-            answer: '',
+            answer: [],
           },
         ],
       },
-      evidences: {
-        6.01: {
-          writeup: {
-            points: [
-              { label: 'Point 1', checked: false },
-              { label: 'Point 2', checked: false },
-            ],
-            answer: '',
-          },
-          questions: [
-            {
-              question: 'Question 1?',
-              options: [],
-              answer: '',
-            },
-          ],
-        },
-      },
+      evidences: {},
     },
     'NVQ Level 3': {
       modules: {
@@ -135,28 +77,11 @@ const initialData = {
           {
             question: 'Question 1',
             options: [],
-            answer: '',
+            answer: [],
           },
         ],
       },
-      evidences: {
-        6.01: {
-          writeup: {
-            points: [
-              { label: 'Point 1', checked: false },
-              { label: 'Point 2', checked: false },
-            ],
-            answer: '',
-          },
-          questions: [
-            {
-              question: 'Question 1?',
-              options: [],
-              answer: '',
-            },
-          ],
-        },
-      },
+      evidences: {},
     },
     'NVQ Level 4': {
       modules: {
@@ -164,28 +89,11 @@ const initialData = {
           {
             question: 'Question 1',
             options: [],
-            answer: '',
+            answer: [],
           },
         ],
       },
-      evidences: {
-        6.01: {
-          writeup: {
-            points: [
-              { label: 'Point 1', checked: false },
-              { label: 'Point 2', checked: false },
-            ],
-            answer: '',
-          },
-          questions: [
-            {
-              question: 'Question 1?',
-              options: [],
-              answer: '',
-            },
-          ],
-        },
-      },
+      evidences: {},
     },
   },
 }
@@ -197,5 +105,5 @@ export const getData = async ({ course, level }) => {
     await Preferences.set({ key, value: JSON.stringify(initialData) })
   }
 
-  return data[course][level] || initialData[course][level]
+  return data?.[course]?.[level] ?? initialData[course][level]
 }

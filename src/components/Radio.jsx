@@ -1,6 +1,5 @@
 import React from 'react'
 
-import Label from '/src/components/Label'
 import Message from '/src/components/Message'
 
 export default ({ options, name, value, error, onChange }) => (
@@ -23,13 +22,21 @@ export default ({ options, name, value, error, onChange }) => (
             'rounded-full',
             'appearance-none',
             'outline-offset-4',
-            'outline-dark-blue',
+            'outline-light-grey',
             'checked:bg-lime',
             'checked:outline-lime',
           ].join(' ')}
         />
         <div className="pl-3.5">
-          <label htmlFor={option} className="text-sm font-light text-light-grey">
+          <label
+            htmlFor={option}
+            className={[
+              'bg-blue',
+              'text-sm',
+              'font-light',
+              'text-light-grey',
+            ].join(' ')}
+          >
             {option}
           </label>
         </div>

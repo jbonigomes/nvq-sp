@@ -11,21 +11,23 @@ import Section from '/src/components/Section'
 export default () => (
   <Container className="flex items-center h-screen">
     <div className="w-full">
-      <Section>
-        <H1 className="text-center">Welcome</H1>
-        <H2>NVQ SP</H2>
-      </Section>
-      <Section>
-        <Logo />
-      </Section>
-      <Section>
-        <P>Click the button below to get started</P>
-      </Section>
-      <Section>
-        <Button href="/welcome/profile" secondary>
-          GET STARTED
-        </Button>
-      </Section>
+      <div className="-mt-safe-area-inset-top">
+        <Section>
+          <H1 className="text-center">Welcome</H1>
+          <H2>NVQ SP</H2>
+        </Section>
+        <Section>
+          <Logo />
+        </Section>
+        <Section>
+          <P>Click the button below to get started</P>
+        </Section>
+        <Section>
+          <Button href="/welcome/profile" secondary>
+            GET STARTED
+          </Button>
+        </Section>
+      </div>
     </div>
   </Container>
 )

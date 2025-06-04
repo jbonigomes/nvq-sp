@@ -17,6 +17,15 @@ importers:
       '@capacitor/core':
         specifier: 7.2.0
         version: 7.2.0
+      '@capacitor/device':
+        specifier: 7.0.1
+        version: 7.0.1(@capacitor/core@7.2.0)
+      '@capacitor/file-viewer':
+        specifier: 1.0.1
+        version: 1.0.1(@capacitor/core@7.2.0)
+      '@capacitor/filesystem':
+        specifier: 7.1.1
+        version: 7.1.1(@capacitor/core@7.2.0)
       '@capacitor/ios':
         specifier: 7.2.0
         version: 7.2.0(@capacitor/core@7.2.0)
@@ -201,6 +210,21 @@ packages:
   '@capacitor/core@7.2.0':
     resolution: {integrity: sha512-2zCnA6RJeZ9ec4470o8QMZEQTWpekw9FNoqm5TLc10jeCrhvHVI8MPgxdZVc3mOdFlyieYu4AS1fNxSqbS57Pw==}
 
+  '@capacitor/device@7.0.1':
+    resolution: {integrity: sha512-ImjR2LmCEhbckYtOHXTfi5v6B7d4HPX9uKIAQs7wzzmE+yRRXuUTEzARBQ00dZDInAInkbuyQRdjwPTSHZUpnw==}
+    peerDependencies:
+      '@capacitor/core': '>=7.0.0'
+
+  '@capacitor/file-viewer@1.0.1':
+    resolution: {integrity: sha512-CWdo9F2CBe3atHXbdHjE+ZHWxPZu1SPfft8DUy6brEAmuFFw1jpPs/4aUvCZYbQO/akThOBYpl2Ou1a2XZ9XPg==}
+    peerDependencies:
+      '@capacitor/core': ^7.0.0
+
+  '@capacitor/filesystem@7.1.1':
+    resolution: {integrity: sha512-xAQvurZlfKOO7I8d98GFRymS/Dd25sw0L1weF4dKR59nXloWEeagoFv+xtaNlDfolJHo4/uKVvxsLzM0xSmiUQ==}
+    peerDependencies:
+      '@capacitor/core': '>=7.0.0'
+
   '@capacitor/ios@7.2.0':
     resolution: {integrity: sha512-MQgRZcXZpbpjN83bjkGrzQd7s3XeHBZplmWf38/msF/siMGJKLrXNmNzmmPIWA5Xpi/aH6UoJFk1wXuU2U+zMg==}
     peerDependencies:
@@ -210,6 +234,9 @@ packages:
     resolution: {integrity: sha512-XF9jOHzvoIBZLwZr/EX6aVaUO1d8Mx7TwBLQS33pYHOliCW5knT5KUkFOXNNYxh9qqODYesee9xuQIKNJpQBag==}
     peerDependencies:
       '@capacitor/core': '>=7.0.0'
+
+  '@capacitor/synapse@1.0.2':
+    resolution: {integrity: sha512-ynq39s4D2rhk+aVLWKfKfMCz9SHPKijL9tq8aFL5dG7ik7/+PvBHmg9cPHbqdvFEUSMmaGzL6cIjzkOruW7vGA==}
 
   '@esbuild/aix-ppc64@0.25.5':
     resolution: {integrity: sha512-9o3TMmpmftaCMepOdA5k/yDw8SfInyzWWTjYTFCX3kPSDJMROQTb8jg+h9Cnwnmm1vOzvxN7gIfB5V2ewpjtGA==}
@@ -1816,6 +1843,20 @@ snapshots:
     dependencies:
       tslib: 2.4.0
 
+  '@capacitor/device@7.0.1(@capacitor/core@7.2.0)':
+    dependencies:
+      '@capacitor/core': 7.2.0
+
+  '@capacitor/file-viewer@1.0.1(@capacitor/core@7.2.0)':
+    dependencies:
+      '@capacitor/core': 7.2.0
+      '@capacitor/synapse': 1.0.2
+
+  '@capacitor/filesystem@7.1.1(@capacitor/core@7.2.0)':
+    dependencies:
+      '@capacitor/core': 7.2.0
+      '@capacitor/synapse': 1.0.2
+
   '@capacitor/ios@7.2.0(@capacitor/core@7.2.0)':
     dependencies:
       '@capacitor/core': 7.2.0
@@ -1823,6 +1864,8 @@ snapshots:
   '@capacitor/preferences@7.0.1(@capacitor/core@7.2.0)':
     dependencies:
       '@capacitor/core': 7.2.0
+
+  '@capacitor/synapse@1.0.2': {}
 
   '@esbuild/aix-ppc64@0.25.5':
     optional: true
