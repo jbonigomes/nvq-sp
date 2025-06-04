@@ -22,14 +22,7 @@ export default () => {
 
   React.useEffect(() => {
     const init = async () => {
-      const profileStore = await getProfile()
-
-      if (profileStore?.course && profileStore?.level) {
-        const { modules } = await getData(profileStore)
-        setModules(Object.keys(modules))
-      } else {
-        navigate('/welcome')
-      }
+      setModules(Object.keys((await getData()).modules))
     }
 
     init()

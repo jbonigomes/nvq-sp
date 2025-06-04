@@ -21,14 +21,7 @@ export default () => {
 
   React.useEffect(() => {
     const init = async () => {
-      const profileStore = await getProfile()
-
-      if (profileStore?.course && profileStore?.level) {
-        const { evidences } = await getData(profileStore)
-        setEvidences(evidences)
-      } else {
-        navigate('/welcome')
-      }
+      setEvidences((await getData()).evidences)
     }
 
     init()
@@ -41,11 +34,15 @@ export default () => {
         <H1 className="text-center mb-2">Evidences</H1>
       </Header>
       <Main>
-        <List>
-          {evidences.map(({ id }) => (
-            <ListItem key={id} label={id} path="evidences" />
-          ))}
-        </List>
+        {evidences.length ? (
+          <List>
+            {evidences.map(({ id }) => (
+              <ListItem key={id} label={id} path="evidences" />
+            ))}
+          </List>
+        ) : (
+          <button>Create first evidence</button>
+        )}
       </Main>
       <Navigation active="evidences" />
     </Container>

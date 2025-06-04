@@ -27,16 +27,6 @@ export const setProfileFirstAider = async (firstAider) => {
   await Preferences.set({ key, value: JSON.stringify({ ...store, firstAider }) })
 }
 
-export const setProfileLevel = async (level) => {
-  const store = await getProfile()
-  await Preferences.set({ key, value: JSON.stringify({ ...store, level }) })
-}
-
-export const setProfileCourse = async (course) => {
-  const store = await getProfile()
-  await Preferences.set({ key, value: JSON.stringify({ ...store, course }) })
-}
-
 export const setProfileSchool = async (school) => {
   const store = await getProfile()
   await Preferences.set({ key, value: JSON.stringify({ ...store, school }) })
