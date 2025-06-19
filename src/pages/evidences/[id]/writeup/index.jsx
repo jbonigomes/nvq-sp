@@ -7,17 +7,30 @@ import Main from '/src/components/Main'
 import Section from '/src/components/Section'
 import Subnav from '/src/components/Subnav'
 
+import { getData } from '/src/store/data'
+
 export default () => {
   const { id } = useParams()
+
+  const [evidence, setEvidence] = React.useState({})
 
   const onDownload = () => {
     // TODO: should abstract this
   }
 
+  React.useEffect(() => {
+    const init = async () => {
+      const { evidences } = await getData()
+      setEvidence(evidences?.find?.((e) => e.id === id))
+    }
+
+    init()
+  }, [])
+
   return (
     <Container>
       <Header backTo="/evidences" onClick={onDownload}>
-        {id} Writeup
+        {evidence.title} Writeup
       </Header>
       <Main>
         <Section>

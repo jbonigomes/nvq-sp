@@ -11,16 +11,23 @@ import Logo from '/src/components/Logo'
 import Main from '/src/components/Main'
 import Navigation from '/src/components/Navigation'
 
-import { getData } from '/src/store/data'
+import { getData, addEvidence } from '/src/store/data'
 import { getProfile } from '/src/store/profile'
 
 export default () => {
   const navigate = useNavigate()
 
+  const [profile, setProfile] = React.useState({})
   const [evidences, setEvidences] = React.useState([])
+
+  const onAddEvidence = async () => {
+    const id = await addEvidence(profile)
+    navigate(`/evidences/${id}`)
+  }
 
   React.useEffect(() => {
     const init = async () => {
+      setProfile(await getProfile())
       setEvidences((await getData()).evidences)
     }
 
@@ -36,12 +43,12 @@ export default () => {
       <Main>
         {evidences.length ? (
           <List>
-            {evidences.map(({ id }) => (
-              <ListItem key={id} label={id} path="evidences" />
+            {evidences.map(({ id, title }) => (
+              <ListItem key={id} label={title} path={`/evidences/${id}`} />
             ))}
           </List>
         ) : (
-          <button>Create first evidence</button>
+          <button onClick={onAddEvidence}>Create first evidence</button>
         )}
       </Main>
       <Navigation active="evidences" />

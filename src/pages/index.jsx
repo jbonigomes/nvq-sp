@@ -9,21 +9,20 @@ import H2 from '/src/components/H2'
 import Header from '/src/components/Header'
 import Input from '/src/components/Input'
 import Logo from '/src/components/Logo'
-import Modal from '/src/components/Modal'
 import Main from '/src/components/Main'
 import Navigation from '/src/components/Navigation'
 import Section from '/src/components/Section'
 
 import { getData } from '/src/store/data'
-import { getProfile, resetProfile, setProfileName } from '/src/store/profile'
+import { getProfile, setProfileName } from '/src/store/profile'
 import { isNameValid } from '/src/utils/validators'
 
 export default () => {
   const navigate = useNavigate()
 
+  // TODO: we need to handle each field individually
   const [error, setError] = React.useState('')
   const [profile, setProfile] = React.useState()
-  const [showModal, setShowModal] = React.useState(false)
 
   const onChange = async ({ target }) => {
     // TODO: we need to handle each field individually
@@ -38,28 +37,9 @@ export default () => {
     }
   }
 
-  const onModalOpen = () => {
-    setShowModal(true)
-  }
-
-  const onModalClose = (action) => async () => {
-    setShowModal(false)
-
-    if (action) {
-      await resetProfile()
-      navigate('/welcome')
-    }
-  }
-
   React.useEffect(() => {
     const init = async () => {
-      const profileStore = await getProfile()
-
-      if (profileStore?.course && profileStore?.level) {
-        setProfile(profileStore)
-      } else {
-        navigate('/welcome')
-      }
+      setProfile(await getProfile())
     }
 
     init()
@@ -70,7 +50,7 @@ export default () => {
       <Container>
         <Header>
           <Logo />
-          <H1 className="text-center">NVQ Level 2</H1>
+          <H1 className="text-center">NVQ Level 3</H1>
           <H2>Installation & Commissioning</H2>
         </Header>
         <Main>
@@ -90,20 +70,6 @@ export default () => {
           </Section>
           <Section>
             <Input
-              label="First Aider"
-              onChange={onChange}
-              value={profile?.firstAider ?? ''}
-            />
-          </Section>
-          <Section>
-            <Input
-              label="Location"
-              onChange={onChange}
-              value={profile?.location ?? ''}
-            />
-          </Section>
-          <Section>
-            <Input
               label="School"
               onChange={onChange}
               value={profile?.school ?? ''}
@@ -116,21 +82,9 @@ export default () => {
               value={profile?.instructor ?? ''}
             />
           </Section>
-          <Section>
-            <Button onClick={onModalOpen} secondary>
-              RESET
-            </Button>
-          </Section>
         </Main>
         <Navigation active="home" />
       </Container>
-      {showModal && (
-        <Modal
-          action="RESET"
-          onClick={onModalClose}
-          text="This action will reset all your progress"
-        />
-      )}
     </>
   )
 }

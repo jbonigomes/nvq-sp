@@ -53,18 +53,7 @@ const initialData = {
       },
     ],
   },
-  evidences: [
-    // data shape example
-    // {
-    //   id: 12345,
-    //   writeup: '',
-    //   title: '6.01',
-    //   date: ['24', '11', '2025'],
-    //   tools: [],
-    //   gallery: [],
-    //   materials: [],
-    // },
-  ],
+  evidences: [],
 }
 
 export const getData = async () => {
@@ -75,4 +64,47 @@ export const getData = async () => {
   }
 
   return data ?? initialData
+}
+
+export const addEvidence = async ({ firstAider, location }) => {
+  const now = new Date()
+  const id = `${now.valueOf()}`
+  const data = JSON.parse((await Preferences.get({ key })).value)
+
+  const payload = {
+    ...data,
+    evidences: [
+      ...data.evidences,
+      {
+        id,
+        location,
+        firstAider,
+        title: '',
+        writeup: '',
+        tools: [],
+        gallery: [],
+        materials: [],
+        date: [
+          `${now.getDate()}`,
+          `${now.getMonth() + 1}`,
+          `${now.getFullYear()}`,
+        ],
+      },
+    ],
+  }
+
+  await Preferences.set({ key, value: JSON.stringify(payload) })
+
+  return id
+}
+
+export const deleteEvidence = async (id) => {
+  const data = JSON.parse((await Preferences.get({ key })).value)
+  await Preferences.set({
+    key,
+    value: JSON.stringify({
+      ...data,
+      evidences: data.evidences.filter((e) => e.id !== id),
+    }),
+  })
 }

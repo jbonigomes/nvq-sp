@@ -2,7 +2,7 @@ import React from 'react'
 import pdfMake from 'pdfmake/build/pdfmake'
 import pdfFonts from 'pdfmake/build/vfs_fonts'
 
-import { useParams } from 'react-router'
+import { useNavigate, useParams } from 'react-router'
 import { Device } from '@capacitor/device'
 import { FileViewer } from '@capacitor/file-viewer'
 import { Filesystem, Directory } from '@capacitor/filesystem'
@@ -15,7 +15,7 @@ import Main from '/src/components/Main'
 import Section from '/src/components/Section'
 import Subnav from '/src/components/Subnav'
 
-import { getData } from '/src/store/data'
+import { getData, deleteEvidence } from '/src/store/data'
 import { getProfile } from '/src/store/profile'
 import { isNameValid } from '/src/utils/validators'
 
@@ -23,12 +23,12 @@ pdfMake.addVirtualFileSystem(pdfFonts);
 
 export default () => {
   const { id } = useParams()
+  const navigate = useNavigate()
 
   const [date, setDate] = React.useState('')
   const [title, setTitle] = React.useState('')
   const [location, setLocation] = React.useState('')
   const [firstAider, setFirstAider] = React.useState('')
-  const [evidenceTitle, setEvidenceTitle] = React.useState('')
 
   const [dateError, setDateError] = React.useState('')
   const [titleError, setTitleError] = React.useState('')
@@ -66,7 +66,7 @@ export default () => {
   const onTitleBlur = () => {
     if (title && isNameValid(title)) {
       // TODO: Persist
-      setEvidenceTitle(title)
+      setTitle(title)
     } else {
       setEvidenceTitle('')
       setTitleError('You must enter a valid title')
@@ -89,8 +89,9 @@ export default () => {
     }
   }
 
-  const onDelete = () => {
-    // TODO: implement
+  const onDelete = async () => {
+    await deleteEvidence(id)
+    navigate('/evidences')
   }
 
   const onDownload = async () => {
@@ -122,16 +123,13 @@ export default () => {
 
   React.useEffect(() => {
     const init = async () => {
-      const profile = await getProfile()
-      const { evidences } = await getData(profile)
-
+      const { evidences } = await getData()
       const evidence = evidences?.find?.((e) => e.id === id)
 
-      setTitle(id)
       setDate(evidence?.date || '')
-      setLocation(profile?.location || '')
-      setEvidenceTitle(evidence?.id || '')
-      setFirstAider(profile?.firstAider || '')
+      setTitle(evidence?.title || '')
+      setLocation(evidence?.location || '')
+      setFirstAider(evidence?.firstAider || '')
     }
 
     init()
@@ -185,9 +183,7 @@ export default () => {
           </Button>
         </Section>
       </Main>
-      {evidenceTitle && (
-        <Subnav id={id} active="details" />
-      )}
+      <Subnav id={id} active="details" />
     </Container>
   )
 }

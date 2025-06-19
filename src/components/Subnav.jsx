@@ -15,18 +15,18 @@ const linkClass = (active) =>
   ].join(' ')
 
 export default ({ id, active }) => (
-  <div className="flex bg-dark-blue pb-6">
+  <footer className="flex bg-dark-blue">
     <Link to={`/evidences/${id}`} className={linkClass(active === 'details')}>
       <svg
         width="20"
         height="20"
         fill="none"
         title="details"
-        stroke-width="2"
+        strokeWidth="2"
         viewBox="0 0 24 24"
         stroke="currentColor"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinecap="round"
+        strokeLinejoin="round"
         className={active === 'details' ? 'stroke-lime' : 'stroke-light-grey'}
       >
         <polyline points="10 9 9 9 8 9" />
@@ -153,5 +153,5 @@ export default ({ id, active }) => (
       </svg>
       <div className="text-xs font-bold mt-1">Gallery</div>
     </Link>
-  </div>
+  </footer>
 )

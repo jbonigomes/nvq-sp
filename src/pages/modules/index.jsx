@@ -1,7 +1,5 @@
 import React from 'react'
 
-import { useNavigate } from 'react-router'
-
 import Container from '/src/components/Container'
 import H1 from '/src/components/H1'
 import Header from '/src/components/Header'
@@ -16,8 +14,6 @@ import { getData } from '/src/store/data'
 import { getProfile } from '/src/store/profile'
 
 export default () => {
-  const navigate = useNavigate()
-
   const [modules, setModules] = React.useState([])
 
   React.useEffect(() => {
@@ -37,7 +33,7 @@ export default () => {
       <Main>
         <List>
           {modules.map((module) => (
-            <ListItem key={module} label={module} path="modules" />
+            <ListItem key={module} label={module} path={`/modules/${module}`} />
           ))}
         </List>
       </Main>

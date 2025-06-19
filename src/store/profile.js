@@ -2,37 +2,51 @@ import { Preferences } from '@capacitor/preferences'
 
 const key = 'nvqsp-profile'
 
-export const resetProfile = async () => await Preferences.remove({ key })
+const initialProfile = {
+  name: '',
+  email: '',
+  school: '',
+  location: '',
+  instructor: '',
+  firstAider: '',
+}
 
-export const getProfile = async () =>
-  JSON.parse((await Preferences.get({ key })).value)
+export const getProfile = async () => {
+  const profile = JSON.parse((await Preferences.get({ key })).value)
+
+  if (!profile) {
+    await Preferences.set({ key, value: JSON.stringify(initialProfile) })
+  }
+
+  return profile ?? initialProfile
+}
 
 export const setProfileName = async (name) => {
-  const store = await getProfile()
-  await Preferences.set({ key, value: JSON.stringify({ ...store, name }) })
+  const profile = await getProfile()
+  await Preferences.set({ key, value: JSON.stringify({ ...profile, name }) })
 }
 
 export const setProfileEmail = async (email) => {
-  const store = await getProfile()
-  await Preferences.set({ key, value: JSON.stringify({ ...store, email }) })
+  const profile = await getProfile()
+  await Preferences.set({ key, value: JSON.stringify({ ...profile, email }) })
 }
 
 export const setProfileLocation = async (location) => {
-  const store = await getProfile()
-  await Preferences.set({ key, value: JSON.stringify({ ...store, location }) })
+  const profile = await getProfile()
+  await Preferences.set({ key, value: JSON.stringify({ ...profile, location }) })
 }
 
 export const setProfileFirstAider = async (firstAider) => {
-  const store = await getProfile()
-  await Preferences.set({ key, value: JSON.stringify({ ...store, firstAider }) })
+  const profile = await getProfile()
+  await Preferences.set({ key, value: JSON.stringify({ ...profile, firstAider }) })
 }
 
 export const setProfileSchool = async (school) => {
-  const store = await getProfile()
-  await Preferences.set({ key, value: JSON.stringify({ ...store, school }) })
+  const profile = await getProfile()
+  await Preferences.set({ key, value: JSON.stringify({ ...profile, school }) })
 }
 
 export const setProfileInstructor = async (instructor) => {
-  const store = await getProfile()
-  await Preferences.set({ key, value: JSON.stringify({ ...store, instructor }) })
+  const profile = await getProfile()
+  await Preferences.set({ key, value: JSON.stringify({ ...profile, instructor }) })
 }

@@ -3,7 +3,7 @@ import { Link } from 'react-router'
 
 export default ({ path, label }) => (
   <li className="border-b-1 border-light-grey py-4">
-    <Link to={`/${path}/${label}`} className="flex text-white">
+    <Link to={path} className="flex text-white">
       <span className="flex-1">{label}</span>
       <svg
         width="24"
