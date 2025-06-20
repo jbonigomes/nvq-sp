@@ -94,44 +94,6 @@ export default ({ id, active }) => (
       <div className="text-xs font-bold mt-1">Materials</div>
     </Link>
     <Link
-      to={`/evidences/${id}/writeup`}
-      className={linkClass(active === 'writeup')}
-    >
-      <svg
-        width="20"
-        height="20"
-        fill="none"
-        title="writeup"
-        strokeWidth="2"
-        viewBox="0 0 24 24"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        className={active === 'writeup' ? 'stroke-lime' : 'stroke-light-grey'}
-      >
-        <path
-          d={[
-            'M 11 4',
-            'H 4', // TODO: fix this
-            'a 2 2 0 0 0 -2 2',
-            'v 14',
-            'a 2 2 0 0 0 2 2',
-            'h 14',
-            'a 2 2 0 0 0 2 -2',
-            'v -7',
-          ].join(' ')}
-        />
-        <path
-          d={[
-            'M 18.5 2.5', // TODO: Fix fraction
-            'a 2.121 2.121 0 0 1 3 3', // TODO: Fix fraction
-            'L 12 15',
-            'l -4 1 1 -4 9.5 -9.5', // TODO: Fix fraction
-          ].join(' ')}
-        />
-      </svg>
-      <div className="text-xs font-bold mt-1">Writeup</div>
-    </Link>
-    <Link
       to={`/evidences/${id}/gallery`}
       className={linkClass(active === 'gallery')}
     >

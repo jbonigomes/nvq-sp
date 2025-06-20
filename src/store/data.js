@@ -66,7 +66,7 @@ export const getData = async () => {
   return data ?? initialData
 }
 
-export const addEvidence = async ({ firstAider, location }) => {
+export const addEvidence = async (title) => {
   const now = new Date()
   const id = `${now.valueOf()}`
   const data = JSON.parse((await Preferences.get({ key })).value)
@@ -77,9 +77,7 @@ export const addEvidence = async ({ firstAider, location }) => {
       ...data.evidences,
       {
         id,
-        location,
-        firstAider,
-        title: '',
+        title,
         writeup: '',
         tools: [],
         gallery: [],

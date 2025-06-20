@@ -2,7 +2,7 @@ import React from 'react'
 import pdfMake from 'pdfmake/build/pdfmake'
 import pdfFonts from 'pdfmake/build/vfs_fonts'
 
-import { useNavigate, useParams } from 'react-router'
+import { useParams } from 'react-router'
 import { Device } from '@capacitor/device'
 import { FileViewer } from '@capacitor/file-viewer'
 import { Filesystem, Directory } from '@capacitor/filesystem'
@@ -17,7 +17,7 @@ import Main from '/src/components/Main'
 import Section from '/src/components/Section'
 import Subnav from '/src/components/Subnav'
 
-import { getData, deleteEvidence, updateEvidence } from '/src/store/data'
+import { getData, updateEvidence } from '/src/store/data'
 import { getProfile } from '/src/store/profile'
 import { isNameValid } from '/src/utils/validators'
 
@@ -25,17 +25,16 @@ pdfMake.addVirtualFileSystem(pdfFonts);
 
 export default () => {
   const { id } = useParams()
-  const navigate = useNavigate()
 
   const [day, setDay] = React.useState('')
   const [year, setYear] = React.useState('')
   const [month, setMonth] = React.useState('')
   const [title, setTitle] = React.useState('')
+  const [writeup, setWriteup] = React.useState('')
   const [location, setLocation] = React.useState('')
   const [firstAider, setFirstAider] = React.useState('')
 
   const [dateError, setDateError] = React.useState('')
-  const [titleError, setTitleError] = React.useState('')
   const [locationError, setLocationError] = React.useState('')
   const [firstAiderError, setFirstAiderError] = React.useState('')
 
@@ -54,11 +53,6 @@ export default () => {
     setMonth(target.value)
   }
 
-  const onTitleChange = ({ target }) => {
-    setTitleError('')
-    setTitle(target.value)
-  }
-
   const onLocationChange = ({ target }) => {
     setLocationError('')
     setLocation(target.value)
@@ -67,6 +61,10 @@ export default () => {
   const onFirstAiderChange = ({ target }) => {
     setFirstAiderError('')
     setFirstAider(target.value)
+  }
+
+  const onWriteupChange = ({ target }) => {
+    setWriteup(target.value)
   }
 
   const onDateBlur = () => {
@@ -80,14 +78,6 @@ export default () => {
       updateEvidence(id, 'date', [day.padStart(2, '0'), month.padStart(2, '0'), year])
     } else {
       setDateError('You must enter a valid date')
-    }
-  }
-
-  const onTitleBlur = () => {
-    if (title && isNameValid(title)) {
-      updateEvidence(id, 'title', title)
-    } else {
-      setTitleError('You must enter a valid title')
     }
   }
 
@@ -107,9 +97,8 @@ export default () => {
     }
   }
 
-  const onDelete = async () => {
-    await deleteEvidence(id)
-    navigate('/evidences')
+  const onWriteupBlur = () => {
+    // TODO: persist writeup
   }
 
   const onDownload = async () => {
@@ -158,18 +147,9 @@ export default () => {
   return (
     <Container>
       <Header backTo="/evidences" onClick={onDownload}>
-        Evidence Details
+        {title}
       </Header>
       <Main>
-        <Section>
-          <Input
-            label="Title"
-            value={title}
-            error={titleError}
-            onBlur={onTitleBlur}
-            onChange={onTitleChange}
-          />
-        </Section>
         <Section>
           <DateInput
             day={day}
@@ -201,9 +181,11 @@ export default () => {
           />
         </Section>
         <Section>
-          <Button onClick={onDelete} secondary warning>
-            DELETE
-          </Button>
+          <Input
+            label="Writeup"
+            value={writeup}
+            onChange={onWriteupChange}
+          />
         </Section>
       </Main>
       <Subnav id={id} active="details" />

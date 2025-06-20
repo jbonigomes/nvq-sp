@@ -11,7 +11,7 @@ const classNames = (secondary, warning, small) =>
     'rounded-full',
     small ? 'p-2' : 'p-3',
     small ? 'text-sm' : '',
-    secondary ? 'bg-blue' : 'bg-lime',
+    secondary ? 'bg-none' : 'bg-lime',
     secondary ? 'text-lime' : 'text-blue',
     warning && !secondary ? 'bg-red' : '',
     warning && secondary ? 'text-red' : '',
