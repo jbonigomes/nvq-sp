@@ -14,32 +14,66 @@ import Navigation from '/src/components/Navigation'
 import Section from '/src/components/Section'
 
 import { getData } from '/src/store/data'
-import { getProfile, setProfileName } from '/src/store/profile'
+import { getProfile, setProfileName, setProfileInstructor, setProfileSchool } from '/src/store/profile'
 import { isNameValid } from '/src/utils/validators'
 
 export default () => {
   const navigate = useNavigate()
 
-  // TODO: we need to handle each field individually
-  const [error, setError] = React.useState('')
-  const [profile, setProfile] = React.useState()
+  const [name, setName] = React.useState('')
+  const [school, setSchool] = React.useState('')
+  const [instructor, setInstructor] = React.useState('')
 
-  const onChange = async ({ target }) => {
-    // TODO: we need to handle each field individually
+  const [nameError, setNameError] = React.useState('')
+  const [schoolError, setSchoolError] = React.useState('')
+  const [instructorError, setInstructorError] = React.useState('')
+
+  const onChangeName = async ({ target }) => {
+    setNameError('')
+    setName(target.value)
   }
 
-  // TODO: we need to handle each field individually
-  const onBlur = async () => {
-    if (isNameValid(profile?.name)) {
-      await setProfileName(profile?.name ?? '')
+  const onChangeSchool = async ({ target }) => {
+    setSchoolError('')
+    setSchool(target.value)
+  }
+
+  const onChangeInstructor = async ({ target }) => {
+    setInstructorError('')
+    setInstructor(target.value)
+  }
+
+  const onBlurName = async () => {
+    if (isNameValid(name)) {
+      await setProfileName(name)
     } else {
-      setError('You must enter a valid name')
+      setNameError('You must enter a valid name')
+    }
+  }
+
+  const onBlurSchool = async () => {
+    if (isNameValid(school)) {
+      await setProfileSchool(school)
+    } else {
+      setSchoolError('You must enter a valid school')
+    }
+  }
+
+  const onBlurInstructor = async () => {
+    if (isNameValid(instructor)) {
+      await setProfileInstructor(instructor)
+    } else {
+      setInstructorError('You must enter a valid instructor')
     }
   }
 
   React.useEffect(() => {
     const init = async () => {
-      setProfile(await getProfile())
+      const profile = await getProfile()
+
+      setName(profile?.name ?? '')
+      setSchool(profile?.school ?? '')
+      setInstructor(profile?.instructor ?? '')
     }
 
     init()
@@ -57,29 +91,28 @@ export default () => {
           <Section>
             <Input
               label="Name"
-              onChange={onChange}
-              value={profile?.name ?? ''}
-            />
-          </Section>
-          <Section>
-            <Input
-              label="Email"
-              onChange={onChange}
-              value={profile?.email ?? ''}
+              value={name}
+              error={nameError}
+              onBlur={onBlurName}
+              onChange={onChangeName}
             />
           </Section>
           <Section>
             <Input
               label="School"
-              onChange={onChange}
-              value={profile?.school ?? ''}
+              value={school}
+              error={schoolError}
+              onBlur={onBlurSchool}
+              onChange={onChangeSchool}
             />
           </Section>
           <Section>
             <Input
               label="Instructor"
-              onChange={onChange}
-              value={profile?.instructor ?? ''}
+              value={instructor}
+              error={instructorError}
+              onBlur={onBlurInstructor}
+              onChange={onChangeInstructor}
             />
           </Section>
         </Main>

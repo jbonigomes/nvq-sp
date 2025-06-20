@@ -85,8 +85,8 @@ export const addEvidence = async ({ firstAider, location }) => {
         gallery: [],
         materials: [],
         date: [
-          `${now.getDate()}`,
-          `${now.getMonth() + 1}`,
+          `${now.getDate()}`.padStart(2, '0'),
+          `${now.getMonth() + 1}`.padStart(2, '0'),
           `${now.getFullYear()}`,
         ],
       },
@@ -107,4 +107,18 @@ export const deleteEvidence = async (id) => {
       evidences: data.evidences.filter((e) => e.id !== id),
     }),
   })
+}
+
+export const updateEvidence = async (id, field, value) => {
+  const data = JSON.parse((await Preferences.get({ key })).value)
+
+  const payload = {
+    ...data,
+    evidences: data.evidences.map((evidence) => ({
+      ...evidence,
+      [field]: evidence.id === id ? value : evidence[field],
+    })),
+  }
+
+  await Preferences.set({ key, value: JSON.stringify(payload) })
 }

@@ -9,13 +9,15 @@ import { Filesystem, Directory } from '@capacitor/filesystem'
 
 import Button from '/src/components/Button'
 import Container from '/src/components/Container'
+import DateInput from '/src/components/DateInput'
+import Fieldset from '/src/components/Fieldset'
 import Header from '/src/components/Header'
 import Input from '/src/components/Input'
 import Main from '/src/components/Main'
 import Section from '/src/components/Section'
 import Subnav from '/src/components/Subnav'
 
-import { getData, deleteEvidence } from '/src/store/data'
+import { getData, deleteEvidence, updateEvidence } from '/src/store/data'
 import { getProfile } from '/src/store/profile'
 import { isNameValid } from '/src/utils/validators'
 
@@ -25,7 +27,9 @@ export default () => {
   const { id } = useParams()
   const navigate = useNavigate()
 
-  const [date, setDate] = React.useState('')
+  const [day, setDay] = React.useState('')
+  const [year, setYear] = React.useState('')
+  const [month, setMonth] = React.useState('')
   const [title, setTitle] = React.useState('')
   const [location, setLocation] = React.useState('')
   const [firstAider, setFirstAider] = React.useState('')
@@ -35,9 +39,19 @@ export default () => {
   const [locationError, setLocationError] = React.useState('')
   const [firstAiderError, setFirstAiderError] = React.useState('')
 
-  const onDateChange = ({ target }) => {
+  const onDayChange = ({ target }) => {
     setDateError('')
-    setDate(target.value)
+    setDay(target.value)
+  }
+
+  const onYearChange = ({ target }) => {
+    setDateError('')
+    setYear(target.value)
+  }
+
+  const onMonthChange = ({ target }) => {
+    setDateError('')
+    setMonth(target.value)
   }
 
   const onTitleChange = ({ target }) => {
@@ -56,8 +70,14 @@ export default () => {
   }
 
   const onDateBlur = () => {
-    if (date && isNameValid(date)) {
-      // TODO: Persist
+    const yearInRange = year.length === 4
+    const dayInRange = Number(day) < 32 && Number(day) > 0
+    const monthInRange = Number(month) < 13 && Number(month) > 0
+
+    if (dayInRange && monthInRange && yearInRange) {
+      setDay(day.padStart(2, '0'))
+      setMonth(month.padStart(2, '0'))
+      updateEvidence(id, 'date', [day.padStart(2, '0'), month.padStart(2, '0'), year])
     } else {
       setDateError('You must enter a valid date')
     }
@@ -65,17 +85,15 @@ export default () => {
 
   const onTitleBlur = () => {
     if (title && isNameValid(title)) {
-      // TODO: Persist
-      setTitle(title)
+      updateEvidence(id, 'title', title)
     } else {
-      setEvidenceTitle('')
       setTitleError('You must enter a valid title')
     }
   }
 
   const onLocationBlur = () => {
     if (location && isNameValid(location)) {
-      // TODO: Persist
+      updateEvidence(id, 'location', location)
     } else {
       setLocationError('You must enter a valid location')
     }
@@ -83,7 +101,7 @@ export default () => {
 
   const onFirstAiderBlur = () => {
     if (firstAider && isNameValid(firstAider)) {
-      // TODO: Persist
+      updateEvidence(id, 'firstAider', firstAider)
     } else {
       setFirstAiderError('You must enter a valid first aider name')
     }
@@ -126,8 +144,10 @@ export default () => {
       const { evidences } = await getData()
       const evidence = evidences?.find?.((e) => e.id === id)
 
-      setDate(evidence?.date || '')
       setTitle(evidence?.title || '')
+      setDay(evidence?.date?.[0] || '')
+      setYear(evidence?.date?.[2] || '')
+      setMonth(evidence?.date?.[1] || '')
       setLocation(evidence?.location || '')
       setFirstAider(evidence?.firstAider || '')
     }
@@ -151,12 +171,15 @@ export default () => {
           />
         </Section>
         <Section>
-          <Input
-            label="Date"
-            value={date}
+          <DateInput
+            day={day}
+            year={year}
+            month={month}
             error={dateError}
             onBlur={onDateBlur}
-            onChange={onDateChange}
+            onDayChange={onDayChange}
+            onYearChange={onYearChange}
+            onMonthChange={onMonthChange}
           />
         </Section>
         <Section>

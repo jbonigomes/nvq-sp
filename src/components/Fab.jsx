@@ -1,7 +1,10 @@
 import React from 'react'
 
 export default ({ onClick, isCamera }) => (
-  <button className="aspect-square rounded-full p-4 bg-lime shadow-lg absolute bottom-0 right-0 mr-5 mb-7">
+  <button
+    onClick={onClick}
+    className="fab aspect-square rounded-full p-4 bg-lime shadow-lg fixed bottom-0 right-0 mr-5"
+  >
     <svg
       width="24"
       height="24"

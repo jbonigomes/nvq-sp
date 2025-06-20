@@ -3,6 +3,7 @@ import React from 'react'
 import { useNavigate } from 'react-router'
 
 import Container from '/src/components/Container'
+import Fab from '/src/components/Fab'
 import H1 from '/src/components/H1'
 import Header from '/src/components/Header'
 import List from '/src/components/List'
@@ -40,16 +41,15 @@ export default () => {
         <Logo small />
         <H1 className="text-center mb-2">Evidences</H1>
       </Header>
-      <Main>
-        {evidences.length ? (
+      <Main withFab>
+        {!!evidences.length && (
           <List>
             {evidences.map(({ id, title }) => (
               <ListItem key={id} label={title} path={`/evidences/${id}`} />
             ))}
           </List>
-        ) : (
-          <button onClick={onAddEvidence}>Create first evidence</button>
         )}
+        <Fab onClick={onAddEvidence} />
       </Main>
       <Navigation active="evidences" />
     </Container>

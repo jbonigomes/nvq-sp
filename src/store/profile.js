@@ -26,21 +26,6 @@ export const setProfileName = async (name) => {
   await Preferences.set({ key, value: JSON.stringify({ ...profile, name }) })
 }
 
-export const setProfileEmail = async (email) => {
-  const profile = await getProfile()
-  await Preferences.set({ key, value: JSON.stringify({ ...profile, email }) })
-}
-
-export const setProfileLocation = async (location) => {
-  const profile = await getProfile()
-  await Preferences.set({ key, value: JSON.stringify({ ...profile, location }) })
-}
-
-export const setProfileFirstAider = async (firstAider) => {
-  const profile = await getProfile()
-  await Preferences.set({ key, value: JSON.stringify({ ...profile, firstAider }) })
-}
-
 export const setProfileSchool = async (school) => {
   const profile = await getProfile()
   await Preferences.set({ key, value: JSON.stringify({ ...profile, school }) })

@@ -1,12 +1,5 @@
 @import "tailwindcss";
 
-html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  overflow: hidden;
-}
-
 header {
   padding-top: max(var(--spacing) * 2, env(safe-area-inset-top));
 }
@@ -15,10 +8,14 @@ footer {
   padding-bottom: max(var(--spacing) * 3, env(safe-area-inset-bottom));
 }
 
+.fab {
+  margin-bottom: calc(var(--spacing) * 22 + env(safe-area-inset-bottom));
+}
+
 @theme {
   --color-red: #ee5555;
   --color-lime: #77dd77;
-  --color-blue: #0D0E21;
+  --color-blue: #0d0e21;
   --color-black: #000000;
   --color-mid-blue: #18183c;
   --color-dark-blue: #0a0c1a;

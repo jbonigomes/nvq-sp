@@ -1,10 +1,7 @@
 import React from 'react'
 
 export default ({ children }) => (
-  <div
-    className="flex flex-col overflow-hidden"
-    style={{ height: `calc(${window.innerHeight * 0.01}px * 100)` }}
-  >
+  <div className="flex flex-col h-full overflow-hidden">
     {children}
   </div>
 )
