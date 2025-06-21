@@ -79,6 +79,8 @@ export const addEvidence = async (title) => {
         id,
         title,
         writeup: '',
+        location: '',
+        firstAider: '',
         tools: [],
         gallery: [],
         materials: [],

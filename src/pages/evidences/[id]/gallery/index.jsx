@@ -31,7 +31,7 @@ export default () => {
   return (
     <Container>
       <Header backTo="/evidences" onClick={onDownload}>
-        {evidence.title} Gallery
+        {evidence.title}
       </Header>
       <Main withFab>
         <Section>

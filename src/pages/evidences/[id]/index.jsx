@@ -16,6 +16,7 @@ import Input from '/src/components/Input'
 import Main from '/src/components/Main'
 import Section from '/src/components/Section'
 import Subnav from '/src/components/Subnav'
+import Textarea from '/src/components/Textarea'
 
 import { getData, updateEvidence } from '/src/store/data'
 import { getProfile } from '/src/store/profile'
@@ -98,7 +99,8 @@ export default () => {
   }
 
   const onWriteupBlur = () => {
-    // TODO: persist writeup
+    // TODO: add some validation?
+    updateEvidence(id, 'writeup', writeup)
   }
 
   const onDownload = async () => {
@@ -137,6 +139,7 @@ export default () => {
       setDay(evidence?.date?.[0] || '')
       setYear(evidence?.date?.[2] || '')
       setMonth(evidence?.date?.[1] || '')
+      setWriteup(evidence?.writeup || '')
       setLocation(evidence?.location || '')
       setFirstAider(evidence?.firstAider || '')
     }
@@ -181,9 +184,11 @@ export default () => {
           />
         </Section>
         <Section>
-          <Input
+          <Textarea
+            large
             label="Writeup"
             value={writeup}
+            onBlur={onWriteupBlur}
             onChange={onWriteupChange}
           />
         </Section>
