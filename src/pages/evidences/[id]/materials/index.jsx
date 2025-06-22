@@ -64,7 +64,7 @@ export default () => {
         {title}
       </Header>
       <Main className="mt-17" withFab>
-        {!materials.lenght ? (
+        {!materials.length ? (
           <Empty />
         ) : (
           <Section>

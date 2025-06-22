@@ -19,7 +19,7 @@ import Main from '/src/components/Main'
 import Navigation from '/src/components/Navigation'
 import Section from '/src/components/Section'
 
-import { getData, addEvidence, deleteEvidence } from '/src/store/data'
+import { getData, addEvidence } from '/src/store/data'
 import { getProfile } from '/src/store/profile'
 import { isNameValid } from '/src/utils/validators'
 
@@ -39,10 +39,6 @@ export default () => {
 
   const onHide = () => {
     setShowModal(false)
-  }
-
-  const onDelete = async () => {
-    await deleteEvidence(id)
   }
 
   const onSave = async () => {
@@ -75,12 +71,6 @@ export default () => {
         <H1 className="text-center mb-2">Evidences</H1>
       </Header>
       <Main withFab>
-        {/*
-        TODO: add delete and edit capabilities to each ListItem
-        <Button onClick={onDelete} secondary warning>
-          DELETE
-        </Button>
-        */}
         {!evidences.length ? (
           <Empty />
         ) : (

@@ -2,7 +2,7 @@ import React from 'react'
 import pdfMake from 'pdfmake/build/pdfmake'
 import pdfFonts from 'pdfmake/build/vfs_fonts'
 
-import { useParams } from 'react-router'
+import { useParams, useNavigate } from 'react-router'
 import { Device } from '@capacitor/device'
 import { FileViewer } from '@capacitor/file-viewer'
 import { Filesystem, Directory } from '@capacitor/filesystem'
@@ -18,7 +18,7 @@ import Section from '/src/components/Section'
 import Subnav from '/src/components/Subnav'
 import Textarea from '/src/components/Textarea'
 
-import { getData, updateEvidence } from '/src/store/data'
+import { getData, updateEvidence, deleteEvidence } from '/src/store/data'
 import { getProfile } from '/src/store/profile'
 import { isNameValid } from '/src/utils/validators'
 
@@ -26,6 +26,7 @@ pdfMake.addVirtualFileSystem(pdfFonts);
 
 export default () => {
   const { id } = useParams()
+  const navigate = useNavigate()
 
   const [day, setDay] = React.useState('')
   const [year, setYear] = React.useState('')
@@ -103,6 +104,11 @@ export default () => {
     updateEvidence(id, 'writeup', writeup)
   }
 
+  const onDelete = async () => {
+    await deleteEvidence(id)
+    navigate('/evidences')
+  }
+
   const onDownload = async () => {
     const dd = {
       content: [
@@ -149,7 +155,7 @@ export default () => {
 
   return (
     <Container>
-      <Header backTo="/evidences" onClick={onDownload}>
+      <Header backTo="/evidences" onClick={onDownload} onDelete={onDelete} onEdit={() => null}>
         {title}
       </Header>
       <Main>
