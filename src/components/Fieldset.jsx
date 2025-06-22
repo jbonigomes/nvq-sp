@@ -11,7 +11,7 @@ export default ({ children, label, error }) => (
         'border-1',
         'relative',
         error ? 'text-red' : 'text-white has-[:focus]:text-lime',
-        error ? 'border-red' : ' border-light-grey has-[:focus]:border-lime',
+        error ? 'border-red' : 'border-light-grey has-[:focus]:border-lime',
       ].join(' ')}
     >
       <label
