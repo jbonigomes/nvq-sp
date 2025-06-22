@@ -3,6 +3,7 @@ import { useParams } from 'react-router'
 
 import Container from '/src/components/Container'
 import DeletableItem from '/src/components/DeletableItem'
+import Empty from '/src/components/Empty'
 import Fab from '/src/components/Fab'
 import Header from '/src/components/Header'
 import Main from '/src/components/Main'
@@ -63,18 +64,22 @@ export default () => {
         {title}
       </Header>
       <Main className="mt-17" withFab>
-        <Section>
-          {materials.map((material) => (
-            <React.Fragment key={material.id}>
-              <DeletableItem
-                text={material.text}
-                onBlur={onBlur}
-                onChange={onChange(material.id)}
-                onDelete={onDelete(material.id)}
-              />
-            </React.Fragment>
-          ))}
-        </Section>
+        {!materials.lenght ? (
+          <Empty />
+        ) : (
+          <Section>
+            {materials.map((material) => (
+              <React.Fragment key={material.id}>
+                <DeletableItem
+                  text={material.text}
+                  onBlur={onBlur}
+                  onChange={onChange(material.id)}
+                  onDelete={onDelete(material.id)}
+                />
+              </React.Fragment>
+            ))}
+          </Section>
+        )}
         <Fab onClick={onAdd} />
       </Main>
       <Subnav id={id} active="materials" />

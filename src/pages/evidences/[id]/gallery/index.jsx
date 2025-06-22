@@ -2,6 +2,7 @@ import React from 'react'
 import { useParams } from 'react-router'
 
 import Container from '/src/components/Container'
+import Empty from '/src/components/Empty'
 import Fab from '/src/components/Fab'
 import Header from '/src/components/Header'
 import Main from '/src/components/Main'
@@ -34,9 +35,12 @@ export default () => {
         {evidence.title}
       </Header>
       <Main withFab>
+        <Empty />
+        {/*
         <Section>
           Gallery
         </Section>
+        */}
         <Fab isCamera />
       </Main>
       <Subnav id={id} active="gallery" />

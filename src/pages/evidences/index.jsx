@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router'
 
 import Button from '/src/components/Button'
 import Container from '/src/components/Container'
+import Empty from '/src/components/Empty'
 import Fab from '/src/components/Fab'
 import Group from '/src/components/Group'
 import H1 from '/src/components/H1'
@@ -80,7 +81,9 @@ export default () => {
           DELETE
         </Button>
         */}
-        {!!evidences.length && (
+        {!evidences.length ? (
+          <Empty />
+        ) : (
           <List>
             {evidences.map(({ id, title }) => (
               <ListItem key={id} label={title} path={`/evidences/${id}`} />
