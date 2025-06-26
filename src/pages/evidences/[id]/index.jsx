@@ -10,6 +10,8 @@ import { Filesystem, Directory } from '@capacitor/filesystem'
 import Button from '/src/components/Button'
 import Container from '/src/components/Container'
 import DateInput from '/src/components/DateInput'
+import DeleteModal from '/src/components/DeleteModal'
+import EvidenceModal from '/src/components/EvidenceModal'
 import Fieldset from '/src/components/Fieldset'
 import Header from '/src/components/Header'
 import Input from '/src/components/Input'
@@ -28,6 +30,9 @@ export default () => {
   const { id } = useParams()
   const navigate = useNavigate()
 
+  const [showEditModal, setShowEditModal] = React.useState(false)
+  const [showDeleteModal, setShowDeleteModal] = React.useState(false)
+
   const [day, setDay] = React.useState('')
   const [year, setYear] = React.useState('')
   const [month, setMonth] = React.useState('')
@@ -35,10 +40,12 @@ export default () => {
   const [writeup, setWriteup] = React.useState('')
   const [location, setLocation] = React.useState('')
   const [firstAider, setFirstAider] = React.useState('')
+  const [currentTitle, setCurrentTitle] = React.useState('')
 
   const [dateError, setDateError] = React.useState('')
   const [locationError, setLocationError] = React.useState('')
   const [firstAiderError, setFirstAiderError] = React.useState('')
+  const [currentTitleError, setCurrentTitleError] = React.useState('')
 
   const onDayChange = ({ target }) => {
     setDateError('')
@@ -67,6 +74,11 @@ export default () => {
 
   const onWriteupChange = ({ target }) => {
     setWriteup(target.value)
+  }
+
+  const onCurrentTitleChange = ({ target }) => {
+    setCurrentTitleError('')
+    setCurrentTitle(target.value)
   }
 
   const onDateBlur = () => {
@@ -109,6 +121,32 @@ export default () => {
     navigate('/evidences')
   }
 
+  const onHideEditModal = () => {
+    setShowEditModal(false)
+  }
+
+  const onShowEditModal = () => {
+    setShowEditModal(true)
+  }
+
+  const onHideDeleteModal = () => {
+    setShowDeleteModal(false)
+  }
+
+  const onShowDeleteModal = () => {
+    setShowDeleteModal(true)
+  }
+
+  const onSave = () => {
+    if (!isNameValid(currentTitle)) {
+      setCurrentTitleError('You must enter a valid title')
+    } else {
+      setShowEditModal(false)
+      setTitle(currentTitle)
+      updateEvidence(id, 'title', currentTitle)
+    }
+  }
+
   const onDownload = async () => {
     const dd = {
       content: [
@@ -147,6 +185,7 @@ export default () => {
       setMonth(evidence?.date?.[1] || '')
       setWriteup(evidence?.writeup || '')
       setLocation(evidence?.location || '')
+      setCurrentTitle(evidence?.title || '')
       setFirstAider(evidence?.firstAider || '')
     }
 
@@ -155,7 +194,12 @@ export default () => {
 
   return (
     <Container>
-      <Header backTo="/evidences" onClick={onDownload} onDelete={onDelete} onEdit={() => null}>
+      <Header
+        backTo="/evidences"
+        onClick={onDownload}
+        onEdit={onShowEditModal}
+        onDelete={onShowDeleteModal}
+      >
         {title}
       </Header>
       <Main>
@@ -200,6 +244,19 @@ export default () => {
         </Section>
       </Main>
       <Subnav id={id} active="details" />
+      {showEditModal && (
+        <EvidenceModal
+          onSave={onSave}
+          value={currentTitle}
+          title="Edit Evidence"
+          error={currentTitleError}
+          onCancel={onHideEditModal}
+          onChange={onCurrentTitleChange}
+        />
+      )}
+      {showDeleteModal && (
+        <DeleteModal onCancel={onHideDeleteModal} onConfirm={onDelete} />
+      )}
     </Container>
   )
 }

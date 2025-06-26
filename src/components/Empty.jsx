@@ -7,7 +7,7 @@ import Section from '/src/components/Section'
 export default () => (
   <div className="h-full flex flex-col items-center justify-center">
     <H3>No items found</H3>
-    <svg width="200" viewBox="0 0 335 568" title="empty">
+    <svg width="150" viewBox="0 0 335 568" title="empty">
       <rect
         x="0"
         rx="5"

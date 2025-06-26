@@ -2,22 +2,17 @@ import React from 'react'
 
 import { useNavigate } from 'react-router'
 
-import Button from '/src/components/Button'
 import Container from '/src/components/Container'
 import Empty from '/src/components/Empty'
+import EvidenceModal from '/src/components/EvidenceModal'
 import Fab from '/src/components/Fab'
-import Group from '/src/components/Group'
 import H1 from '/src/components/H1'
-import H3 from '/src/components/H3'
 import Header from '/src/components/Header'
-import Input from '/src/components/Input'
 import List from '/src/components/List'
 import ListItem from '/src/components/ListItem'
 import Logo from '/src/components/Logo'
-import Modal from '/src/components/Modal'
 import Main from '/src/components/Main'
 import Navigation from '/src/components/Navigation'
-import Section from '/src/components/Section'
 
 import { getData, addEvidence } from '/src/store/data'
 import { getProfile } from '/src/store/profile'
@@ -84,21 +79,14 @@ export default () => {
       </Main>
       <Navigation active="evidences" />
       {showModal && (
-        <Modal>
-          <Section>
-            <H3>New Evidence</H3>
-            <Input
-              label="Title"
-              value={title}
-              error={titleError}
-              onChange={onTitleChange}
-            />
-          </Section>
-          <Group>
-            <Button small secondary onClick={onHide}>CANCEL</Button>
-            <Button small onClick={onSave}>SAVE</Button>
-          </Group>
-        </Modal>
+        <EvidenceModal
+          value={title}
+          onSave={onSave}
+          onCancel={onHide}
+          error={titleError}
+          title="New Evidence"
+          onChange={onTitleChange}
+        />
       )}
     </Container>
   )
