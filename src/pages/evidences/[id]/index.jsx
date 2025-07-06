@@ -1,119 +1,43 @@
 import React from 'react'
+
 import pdfMake from 'pdfmake/build/pdfmake'
 import pdfFonts from 'pdfmake/build/vfs_fonts'
 
-import { useParams, useNavigate } from 'react-router'
+import { Route, Routes, useParams, useNavigate } from 'react-router'
 import { Device } from '@capacitor/device'
 import { FileViewer } from '@capacitor/file-viewer'
 import { Filesystem, Directory } from '@capacitor/filesystem'
 
-import Button from '/src/components/Button'
 import Container from '/src/components/Container'
-import DateInput from '/src/components/DateInput'
 import DeleteModal from '/src/components/DeleteModal'
 import EvidenceModal from '/src/components/EvidenceModal'
-import Fieldset from '/src/components/Fieldset'
 import Header from '/src/components/Header'
-import Input from '/src/components/Input'
-import Main from '/src/components/Main'
-import Section from '/src/components/Section'
 import Subnav from '/src/components/Subnav'
-import Textarea from '/src/components/Textarea'
+import Details from '/src/pages/evidences/[id]/details'
+import Gallery from '/src/pages/evidences/[id]/gallery'
+import Materials from '/src/pages/evidences/[id]/materials'
+import Tools from '/src/pages/evidences/[id]/tools'
 
 import { getData, updateEvidence, deleteEvidence } from '/src/store/data'
-import { getProfile } from '/src/store/profile'
 import { isNameValid } from '/src/utils/validators'
 
-pdfMake.addVirtualFileSystem(pdfFonts);
+pdfMake.addVirtualFileSystem(pdfFonts)
 
 export default () => {
-  const { id } = useParams()
+  const { id, ...params } = useParams()
   const navigate = useNavigate()
+
+  const [title, setTitle] = React.useState('')
+  const [titleError, setTitleError] = React.useState('')
+
+  const [evidence, setEvidence] = React.useState()
 
   const [showEditModal, setShowEditModal] = React.useState(false)
   const [showDeleteModal, setShowDeleteModal] = React.useState(false)
 
-  const [day, setDay] = React.useState('')
-  const [year, setYear] = React.useState('')
-  const [month, setMonth] = React.useState('')
-  const [title, setTitle] = React.useState('')
-  const [writeup, setWriteup] = React.useState('')
-  const [location, setLocation] = React.useState('')
-  const [firstAider, setFirstAider] = React.useState('')
-  const [currentTitle, setCurrentTitle] = React.useState('')
-
-  const [dateError, setDateError] = React.useState('')
-  const [locationError, setLocationError] = React.useState('')
-  const [firstAiderError, setFirstAiderError] = React.useState('')
-  const [currentTitleError, setCurrentTitleError] = React.useState('')
-
-  const onDayChange = ({ target }) => {
-    setDateError('')
-    setDay(target.value)
-  }
-
-  const onYearChange = ({ target }) => {
-    setDateError('')
-    setYear(target.value)
-  }
-
-  const onMonthChange = ({ target }) => {
-    setDateError('')
-    setMonth(target.value)
-  }
-
-  const onLocationChange = ({ target }) => {
-    setLocationError('')
-    setLocation(target.value)
-  }
-
-  const onFirstAiderChange = ({ target }) => {
-    setFirstAiderError('')
-    setFirstAider(target.value)
-  }
-
-  const onWriteupChange = ({ target }) => {
-    setWriteup(target.value)
-  }
-
-  const onCurrentTitleChange = ({ target }) => {
-    setCurrentTitleError('')
-    setCurrentTitle(target.value)
-  }
-
-  const onDateBlur = () => {
-    const yearInRange = year.length === 4
-    const dayInRange = Number(day) < 32 && Number(day) > 0
-    const monthInRange = Number(month) < 13 && Number(month) > 0
-
-    if (dayInRange && monthInRange && yearInRange) {
-      setDay(day.padStart(2, '0'))
-      setMonth(month.padStart(2, '0'))
-      updateEvidence(id, 'date', [day.padStart(2, '0'), month.padStart(2, '0'), year])
-    } else {
-      setDateError('You must enter a valid date')
-    }
-  }
-
-  const onLocationBlur = () => {
-    if (location && isNameValid(location)) {
-      updateEvidence(id, 'location', location)
-    } else {
-      setLocationError('You must enter a valid location')
-    }
-  }
-
-  const onFirstAiderBlur = () => {
-    if (firstAider && isNameValid(firstAider)) {
-      updateEvidence(id, 'firstAider', firstAider)
-    } else {
-      setFirstAiderError('You must enter a valid first aider name')
-    }
-  }
-
-  const onWriteupBlur = () => {
-    // TODO: add some validation?
-    updateEvidence(id, 'writeup', writeup)
+  const onTitleChange = ({ target }) => {
+    setTitleError('')
+    setTitle(target.value)
   }
 
   const onDelete = async () => {
@@ -138,12 +62,12 @@ export default () => {
   }
 
   const onSave = () => {
-    if (!isNameValid(currentTitle)) {
-      setCurrentTitleError('You must enter a valid title')
+    if (!isNameValid(title)) {
+      setTitleError('You must enter a valid title')
     } else {
       setShowEditModal(false)
-      setTitle(currentTitle)
-      updateEvidence(id, 'title', currentTitle)
+      setEvidence({ ...evidence, title })
+      updateEvidence(id, 'title', title)
     }
   }
 
@@ -179,84 +103,47 @@ export default () => {
       const { evidences } = await getData()
       const evidence = evidences?.find?.((e) => e.id === id)
 
+      setEvidence(evidence)
       setTitle(evidence?.title || '')
-      setDay(evidence?.date?.[0] || '')
-      setYear(evidence?.date?.[2] || '')
-      setMonth(evidence?.date?.[1] || '')
-      setWriteup(evidence?.writeup || '')
-      setLocation(evidence?.location || '')
-      setCurrentTitle(evidence?.title || '')
-      setFirstAider(evidence?.firstAider || '')
     }
 
     init()
   }, [])
 
   return (
-    <Container>
-      <Header
-        backTo="/evidences"
-        onClick={onDownload}
-        onEdit={onShowEditModal}
-        onDelete={onShowDeleteModal}
-      >
-        {title}
-      </Header>
-      <Main>
-        <Section>
-          <DateInput
-            day={day}
-            year={year}
-            month={month}
-            error={dateError}
-            onBlur={onDateBlur}
-            onDayChange={onDayChange}
-            onYearChange={onYearChange}
-            onMonthChange={onMonthChange}
-          />
-        </Section>
-        <Section>
-          <Input
-            label="Location"
-            value={location}
-            error={locationError}
-            onBlur={onLocationBlur}
-            onChange={onLocationChange}
-          />
-        </Section>
-        <Section>
-          <Input
-            label="First aider"
-            value={firstAider}
-            error={firstAiderError}
-            onBlur={onFirstAiderBlur}
-            onChange={onFirstAiderChange}
-          />
-        </Section>
-        <Section>
-          <Textarea
-            large
-            label="Writeup"
-            value={writeup}
-            onBlur={onWriteupBlur}
-            onChange={onWriteupChange}
-          />
-        </Section>
-      </Main>
-      <Subnav id={id} active="details" />
-      {showEditModal && (
-        <EvidenceModal
-          onSave={onSave}
-          value={currentTitle}
-          title="Edit Evidence"
-          error={currentTitleError}
-          onCancel={onHideEditModal}
-          onChange={onCurrentTitleChange}
-        />
+    <>
+      {!!evidence && (
+        <Container>
+          <Header
+            backTo="/evidences"
+            onClick={onDownload}
+            onEdit={onShowEditModal}
+            onDelete={onShowDeleteModal}
+          >
+            {evidence.title}
+          </Header>
+          <Routes>
+            <Route path="*" element={<Details evidence={evidence} />} />
+            <Route path="/gallery" element={<Gallery evidence={evidence} />} />
+            <Route path="/materials" element={<Materials evidence={evidence} />} />
+            <Route path="/tools" element={<Tools evidence={evidence} />} />
+          </Routes>
+          <Subnav id={id} active={params['*'] ?? ''} />
+          {showEditModal && (
+            <EvidenceModal
+              onSave={onSave}
+              value={title}
+              title="Edit Evidence"
+              error={titleError}
+              onCancel={onHideEditModal}
+              onChange={onTitleChange}
+            />
+          )}
+          {showDeleteModal && (
+            <DeleteModal onCancel={onHideDeleteModal} onConfirm={onDelete} />
+          )}
+        </Container>
       )}
-      {showDeleteModal && (
-        <DeleteModal onCancel={onHideDeleteModal} onConfirm={onDelete} />
-      )}
-    </Container>
+    </>
   )
 }

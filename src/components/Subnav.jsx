@@ -16,7 +16,7 @@ const linkClass = (active) =>
 
 export default ({ id, active }) => (
   <footer className="flex bg-dark-blue">
-    <Link to={`/evidences/${id}`} className={linkClass(active === 'details')}>
+    <Link to={`/evidences/${id}`} className={linkClass(active === '')}>
       <svg
         width="20"
         height="20"

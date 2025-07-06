@@ -24,6 +24,7 @@ export default () => {
   const [profile, setProfile] = React.useState({})
   const [evidences, setEvidences] = React.useState([])
   const [showModal, setShowModal] = React.useState(false)
+  const [isLoading, setIsLoading] = React.useState(false)
 
   const [title, setTitle] = React.useState('')
   const [titleError, setTitleError] = React.useState('')
@@ -52,42 +53,47 @@ export default () => {
 
   React.useEffect(() => {
     const init = async () => {
-      setProfile(await getProfile())
       setEvidences((await getData()).evidences)
+      setProfile(await getProfile())
+      setIsLoading(false)
     }
 
     init()
   }, [])
 
   return (
-    <Container>
-      <Header>
-        <Logo small />
-        <H1 className="text-center mb-2">Evidences</H1>
-      </Header>
-      <Main withFab>
-        {!evidences.length ? (
-          <Empty />
-        ) : (
-          <List>
-            {evidences.map(({ id, title }) => (
-              <ListItem key={id} label={title} path={`/evidences/${id}`} />
-            ))}
-          </List>
-        )}
-        <Fab onClick={onShow} />
-      </Main>
-      <Navigation active="evidences" />
-      {showModal && (
-        <EvidenceModal
-          value={title}
-          onSave={onSave}
-          onCancel={onHide}
-          error={titleError}
-          title="New Evidence"
-          onChange={onTitleChange}
-        />
+    <>
+      {!isLoading && (
+        <Container>
+          <Header>
+            <Logo small />
+            <H1 className="text-center mb-2">Evidences</H1>
+          </Header>
+          <Main withFab>
+            {!evidences.length ? (
+              <Empty />
+            ) : (
+              <List>
+                {evidences.map(({ id, title }) => (
+                  <ListItem key={id} label={title} path={`/evidences/${id}`} />
+                ))}
+              </List>
+            )}
+            <Fab onClick={onShow} />
+          </Main>
+          <Navigation active="evidences" />
+          {showModal && (
+            <EvidenceModal
+              value={title}
+              onSave={onSave}
+              onCancel={onHide}
+              error={titleError}
+              title="New Evidence"
+              onChange={onTitleChange}
+            />
+          )}
+        </Container>
       )}
-    </Container>
+    </>
   )
 }
