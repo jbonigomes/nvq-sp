@@ -33,9 +33,9 @@ export default ({ backTo, children, onClick, onDelete, onEdit }) => (
         </svg>
       </Link>
     )}
-    <span className="flex-1">{children}</span>
+    <span className="flex-1 truncate">{children}</span>
     {onDelete && (
-      <button className="mr-2" onClick={onDelete}>
+      <button className="mx-2" onClick={onDelete}>
         <svg
           width="20"
           height="20"
@@ -57,7 +57,7 @@ export default ({ backTo, children, onClick, onDelete, onEdit }) => (
       </button>
     )}
     {onEdit && (
-      <button className="mr-2" onClick={onEdit}>
+      <button className="mx-2" onClick={onEdit}>
         <svg
           width="20"
           height="20"
@@ -77,7 +77,7 @@ export default ({ backTo, children, onClick, onDelete, onEdit }) => (
       </button>
     )}
     {onClick && (
-      <button className="mr-2" onClick={onClick}>
+      <button className="mx-2" onClick={onClick}>
         <svg
           width="24"
           height="24"
